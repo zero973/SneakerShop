@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SneakerShop.Core.ApplicationContext;
 using SneakerShop.Core.Models.Web;
 using SneakerShop.Core.Services.Entities;
 using SneakerShop.Web.Controllers.EntityController;
@@ -28,7 +29,6 @@ namespace SneakerShop.WebAPI.Controllers
             return new JsonResult(await _GoodTypesService.Get(baseParams));
         }
 
-        [Authorize("Admin")]
         [HttpGet]
         [Route("[action]")]
         public async Task<JsonResult> GetAll([FromQuery] BaseListParams baseParams)
@@ -36,32 +36,25 @@ namespace SneakerShop.WebAPI.Controllers
             return new JsonResult(await _GoodTypesService.GetAll(baseParams));
         }
 
-        [HttpGet]
-        [Route("[action]")]
-        public async Task<JsonResult> GetActualEntities([FromQuery] BaseListParams baseParams)
-        {
-            return new JsonResult(await _GoodTypesService.GetActuals(baseParams));
-        }
-
-        [Authorize("Admin")]
         [HttpPost]
         [Route("[action]")]
+        [Authorize(Constants.AdminUserRoleName)]
         public async Task<JsonResult> Add([FromBody] BasePostParams postParams)
         {
             return new JsonResult(await _GoodTypesService.Add(postParams));
         }
 
-        [Authorize("Admin")]
         [HttpPost]
         [Route("[action]")]
+        [Authorize(Constants.AdminUserRoleName)]
         public async Task<JsonResult> Update([FromBody] BasePostParams postParams)
         {
             return new JsonResult(await _GoodTypesService.Update(postParams));
         }
 
-        [Authorize("Admin")]
         [HttpPost]
         [Route("[action]")]
+        [Authorize(Constants.AdminUserRoleName)]
         public async Task<JsonResult> Delete([FromBody] BasePostParams postParams)
         {
             return new JsonResult(await _GoodTypesService.Delete(postParams));

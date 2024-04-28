@@ -6,7 +6,7 @@
     public class BasePostParams
     {
 
-        public dynamic? Entity { get; set; }
+        public object? Entity { get; set; }
 
     }
 }

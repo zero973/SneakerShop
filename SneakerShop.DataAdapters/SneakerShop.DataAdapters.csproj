@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SneakerShop.Core\SneakerShop.Core.csproj" />
-    <ProjectReference Include="..\SneakerShop.DataAdapters.Contracts\SneakerShop.DataAdapters.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

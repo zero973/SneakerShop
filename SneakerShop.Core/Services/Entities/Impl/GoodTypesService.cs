@@ -1,19 +1,16 @@
-﻿using AutoMapper;
-using SneakerShop.Core.Models.Entities;
-using SneakerShop.Core.Services.Auth;
+﻿using SneakerShop.Core.Models.Entities;
+using SneakerShop.Core.Repositories.Intf;
 using SneakerShop.Core.Services.Impl;
-using SneakerShop.DataAdapters.Contracts.Repositories.Intf;
+using SneakerShop.Core.Services.Users;
 
 namespace SneakerShop.Core.Services.Entities.Impl
 {
-    public class GoodTypesService : BaseEntityService<GoodType, DataAdapters.Contracts.Models.Entities.GoodType>, IGoodTypesService
+    public class GoodTypesService : BaseEntityService<GoodType>, IGoodTypesService
     {
-
-        public GoodTypesService(IDbEntitiesRepository dbRepository, IAutificationService autificationService, IMapper mapper)
-            : base(dbRepository, autificationService, mapper)
+        public GoodTypesService(IDbEntitiesRepository<GoodType> dbRepository, IAutificationService autificationService) 
+            : base(dbRepository, autificationService)
         {
 
         }
-
     }
 }

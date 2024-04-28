@@ -1,18 +1,16 @@
-﻿using SneakerShop.DataAdapters.Contracts.Models.Entities;
-
-namespace SneakerShop.Core.Models.Entities
+﻿namespace SneakerShop.Core.Models.Entities
 {
-	/// <summary>
-	/// Добавленный в корзину товар
-	/// </summary>
-	public class BasketElement : BaseEntity
+    /// <summary>
+    /// Добавленный в корзину товар
+    /// </summary>
+    public class BasketElement : BaseEntity
 	{
 
         public Good _Good { get; set; }
 
         public Size _Size { get; set; }
 
-        public Auth.AppUser _User { get; set; }
+        public AppUser _User { get; set; }
 
         public Discount? _Discount { get; set; }
 

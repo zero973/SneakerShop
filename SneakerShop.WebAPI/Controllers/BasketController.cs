@@ -3,6 +3,7 @@ using SneakerShop.Web.Controllers.EntityController;
 using SneakerShop.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using SneakerShop.Core.Models.Web;
+using SneakerShop.Core.ApplicationContext;
 
 namespace SneakerShop.Web.Controllers
 {
@@ -11,7 +12,7 @@ namespace SneakerShop.Web.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize("Customer")]
+    [Authorize(Constants.CustomerUserRoleName)]
     public class BasketController : ControllerBase, IEntityController
     {
 
@@ -29,7 +30,6 @@ namespace SneakerShop.Web.Controllers
             return new JsonResult(await _BasketService.Get(baseParams));
         }
 
-        [Authorize("Admin")]
         [HttpGet]
         [Route("[action]")]
         public async Task<JsonResult> GetAll([FromQuery] BaseListParams baseParams)
@@ -37,14 +37,6 @@ namespace SneakerShop.Web.Controllers
             return new JsonResult(await _BasketService.GetAll(baseParams));
         }
 
-        [HttpGet]
-        [Route("[action]")]
-        public async Task<JsonResult> GetActualEntities([FromQuery] BaseListParams baseParams)
-        {
-            return new JsonResult(await _BasketService.GetActuals(baseParams));
-        }
-
-        [Authorize("Admin")]
         [HttpPost]
         [Route("[action]")]
         public async Task<JsonResult> Add([FromBody] BasePostParams postParams)
@@ -52,7 +44,6 @@ namespace SneakerShop.Web.Controllers
             return new JsonResult(await _BasketService.Add(postParams));
         }
 
-        [Authorize("Admin")]
         [HttpPost]
         [Route("[action]")]
         public async Task<JsonResult> Update([FromBody] BasePostParams postParams)
@@ -60,7 +51,6 @@ namespace SneakerShop.Web.Controllers
             return new JsonResult(await _BasketService.Update(postParams));
         }
 
-        [Authorize("Admin")]
         [HttpPost]
         [Route("[action]")]
         public async Task<JsonResult> Delete([FromBody] BasePostParams postParams)

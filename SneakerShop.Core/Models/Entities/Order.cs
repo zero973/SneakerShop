@@ -1,17 +1,16 @@
-﻿using SneakerShop.DataAdapters.Contracts.Enums;
-using SneakerShop.DataAdapters.Contracts.Models.Entities;
+﻿using SneakerShop.Core.Enums;
 
 namespace SneakerShop.Core.Models.Entities
 {
-	/// <summary>
-	/// Заказ
-	/// </summary>
-	public class Order : BaseEntity
+    /// <summary>
+    /// Заказ
+    /// </summary>
+    public class Order : BaseEntity
 	{
 
         public Guid UserId { get; set; }
 
-        public Auth.AppUser _User { get; set; }
+        public AppUser _User { get; set; }
 
         /// <summary>
         /// Статус заказа

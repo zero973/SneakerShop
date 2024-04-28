@@ -12,7 +12,7 @@ namespace SneakerShop.Core.Extensions
         /// </summary>
         public static IQueryable<T> WithPagination<T>(this IQueryable<T> source, BaseListParams baseParam)
         {
-            if (source == null || baseParam == null)
+            if (source == null || baseParam == null || baseParam.PageNumber < 0 || baseParam.RowsCount < 0)
                 return source;
 
             return source
@@ -36,9 +36,9 @@ namespace SneakerShop.Core.Extensions
                     new ParameterExpression[1] { parameterExpression });
 
                 if (ordering.Value)
-                    source = (IOrderedQueryable<T>)source.OrderBy(keySelector);
+                    source = source.OrderBy(keySelector);
                 else
-                    source = (IOrderedQueryable<T>)source.OrderByDescending(keySelector);
+                    source = source.OrderByDescending(keySelector);
             }
 
             return source;

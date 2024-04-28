@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using SneakerShop.DataAdapters.Contracts.Models.Entities;
-using SneakerShop.DataAdapters.Contracts.ApplicationContext;
+using SneakerShop.DataAdapters.Models.Entities;
+using SneakerShop.Core.ApplicationContext;
 
 namespace SneakerShop.DataAdapters.ApplicationContexts;
 
@@ -79,10 +79,18 @@ public class ApplicationContext : IdentityDbContext<AppUser, IdentityRole<Guid>,
         };
         builder.Entity<AppUser>().HasData(user);
 
-        builder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
+        builder.Entity<IdentityUserRole<Guid>>().HasData(new List<IdentityUserRole<Guid>>() 
         {
-            RoleId = adminRole.Id,
-            UserId = user.Id
+            new IdentityUserRole<Guid>
+            {
+                RoleId = adminRole.Id,
+                UserId = user.Id
+            },
+            new IdentityUserRole<Guid>
+            {
+                RoleId = customerRole.Id,
+                UserId = user.Id
+            },
         });
 
         #region GoodType

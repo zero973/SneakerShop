@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SneakerShop.Core.Models.Web;
-using SneakerShop.DataAdapters.Contracts.Models.Entities;
 
 namespace SneakerShop.Web.Controllers.EntityController
 {
@@ -19,11 +18,6 @@ namespace SneakerShop.Web.Controllers.EntityController
         /// Получить все сущности
         /// </summary>
         Task<JsonResult> GetAll(BaseListParams baseParams);
-
-        /// <summary>
-        /// Получить все активные сущности (<see cref="IEntity.IsActual"/> = true)
-        /// </summary>
-        Task<JsonResult> GetActualEntities(BaseListParams baseParams);
 
         /// <summary>
         /// Добавить сущность

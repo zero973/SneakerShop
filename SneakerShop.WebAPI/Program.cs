@@ -1,14 +1,15 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using SneakerShop.Core.Models.Auth;
+using SneakerShop.Core.Models.Entities;
+using SneakerShop.Core.Repositories.Intf;
 using SneakerShop.Core.Services;
 using SneakerShop.Core.Services.Entities;
 using SneakerShop.Core.Services.Entities.Impl;
 using SneakerShop.Core.Services.Impl;
 using SneakerShop.Core.Services.Users;
+using SneakerShop.Core.Services.Users.Impl;
 using SneakerShop.DataAdapters.ApplicationContexts;
-using SneakerShop.DataAdapters.Contracts.Repositories.Intf;
 using SneakerShop.DataAdapters.Map.Profiles;
 using SneakerShop.DataAdapters.Repositories.Impl;
 using SneakerShop.WebAPI.Infrastructure.ModelBinderProviders;
@@ -81,16 +82,38 @@ void RegisterControllersWithServices(WebApplicationBuilder builder)
         options.SlidingExpiration = true;
     });
 
-    builder.Services.AddScoped<IDbEntitiesRepository, DbEntitiesRepository>();
+    #region Repositories
+
+    builder.Services.AddScoped<IDbEntitiesRepository<BasketElement>, BasketElementsRepository>();
+    builder.Services.AddScoped<IDbEntitiesRepository<Discount>, DiscountsRepository>();
+    builder.Services.AddScoped<IDbEntitiesRepository<DiscountType>, DiscountTypesRepository>();
+    builder.Services.AddScoped<IDbEntitiesRepository<Good>, GoodsRepository>();
+    builder.Services.AddScoped<IDbEntitiesRepository<GoodSubtype>, GoodSubtypesRepository>();
+    builder.Services.AddScoped<IDbEntitiesRepository<GoodType>, GoodTypesRepository>();
+    builder.Services.AddScoped<IDbEntitiesRepository<Manufacturer>, ManufacturersRepository>();
+    builder.Services.AddScoped<IDbEntitiesRepository<Order>, OrdersRepository>();
+    builder.Services.AddScoped<IDbEntitiesRepository<OrderedGood>, OrderedGoodsRepository>();
+    builder.Services.AddScoped<IDbEntitiesRepository<Size>, SizesRepository>();
+
+    #endregion
 
     builder.Services.AddTransient<IAutificationService, AutificationService>();
-    builder.Services.AddTransient<IGoodTypesService, GoodTypesService>();
-    builder.Services.AddTransient<IGoodSubtypesService, GoodSubtypesService>();
+    builder.Services.AddTransient<IRolesService, RolesService>();
+
+    #region Entity services
+
+    builder.Services.AddTransient<IBasketService, BasketService>();
+    builder.Services.AddTransient<IDiscountsService, DiscountsService>();
     builder.Services.AddTransient<IDiscountTypesService, DiscountTypesService>();
     builder.Services.AddTransient<IGoodsService, GoodsService>();
-    builder.Services.AddTransient<IBasketService, BasketService>();
-    builder.Services.AddTransient<IOrderedGoodsService, OrderedGoodsService>();
+    builder.Services.AddTransient<IGoodSubtypesService, GoodSubtypesService>();
+    builder.Services.AddTransient<IGoodTypesService, GoodTypesService>();
+    builder.Services.AddTransient<IManufacturersService, ManufacturersService>();
     builder.Services.AddTransient<IOrdersService, OrdersService>();
+    builder.Services.AddTransient<IOrderedGoodsService, OrderedGoodsService>();
+    builder.Services.AddTransient<ISizesService, SizesService>();
+
+    #endregion
 
     builder.Services.AddControllers(opts => opts.ModelBinderProviders.Insert(0, new BaseListParamsModelBinderProvider()));
     builder.Services.AddEndpointsApiExplorer();

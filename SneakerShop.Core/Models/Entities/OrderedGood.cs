@@ -1,6 +1,4 @@
-﻿using SneakerShop.DataAdapters.Contracts.Models.Entities;
-
-namespace SneakerShop.Core.Models.Entities
+﻿namespace SneakerShop.Core.Models.Entities
 {
 	/// <summary>
 	/// Заказанный товар вместе с размером и скидкой

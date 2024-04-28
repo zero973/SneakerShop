@@ -1,4 +1,4 @@
-﻿using SneakerShop.Core.Models.Auth;
+﻿using SneakerShop.Core.Models.Entities;
 using SneakerShop.Core.Models.Web;
 using SneakerShop.Core.Models.Web.Auth;
 
@@ -31,21 +31,6 @@ namespace SneakerShop.Core.Services.Users
         /// Выход
         /// </summary>
         Task SignOut();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        Task<Result> AddNewUser(AppUser user);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        Task<Result> UpdateUser(AppUser user);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        Task<Result> RemoveUser(AppUser user);
 
     }
 }

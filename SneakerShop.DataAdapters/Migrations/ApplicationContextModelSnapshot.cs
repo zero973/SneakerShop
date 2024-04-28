@@ -51,13 +51,13 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ac6c10fd-58cd-4f2e-a69d-27ca572db6b2"),
+                            Id = new Guid("5e615cd3-1ba7-4110-81fd-8fa4c0abb5e9"),
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("2503ca1f-4de2-43ef-8749-73b91b9c4b8c"),
+                            Id = new Guid("7783ba08-532a-4061-8cdc-69fe1bc96301"),
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -149,8 +149,13 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("3f049b98-849e-4d08-ab8a-5b8f2537d54f"),
-                            RoleId = new Guid("ac6c10fd-58cd-4f2e-a69d-27ca572db6b2")
+                            UserId = new Guid("2f9b0ad3-00d0-45be-b5fd-b49b9093a1a7"),
+                            RoleId = new Guid("5e615cd3-1ba7-4110-81fd-8fa4c0abb5e9")
+                        },
+                        new
+                        {
+                            UserId = new Guid("2f9b0ad3-00d0-45be-b5fd-b49b9093a1a7"),
+                            RoleId = new Guid("7783ba08-532a-4061-8cdc-69fe1bc96301")
                         });
                 });
 
@@ -173,7 +178,7 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.AppUser", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.AppUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -248,22 +253,22 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3f049b98-849e-4d08-ab8a-5b8f2537d54f"),
+                            Id = new Guid("2f9b0ad3-00d0-45be-b5fd-b49b9093a1a7"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2b22cac6-209c-44e0-9718-fcb71d1dcc53",
+                            ConcurrencyStamp = "afbf1e0b-5573-4484-9ff4-060a13ea76c7",
                             Email = "sneakershop@mail.ru",
                             EmailConfirmed = true,
                             FirstName = "Admin",
                             LastName = "Admin",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAENpjyE56KJSxrIVed2r0E4DbY6JOGT9JlwJ6ykVMFgau3p/B2dDccELy0XVFVeGIRg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO7B2CUOgbgiKGx+2YkjFD27PKcmLSI7LA6AJOPchq2nTFLZj8xpGnjp8VTMbNjOEA==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.BasketElement", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.BasketElement", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -316,7 +321,7 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.ToTable("Baskets");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Discount", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Discount", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -364,7 +369,7 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.ToTable("Discounts");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.DiscountType", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.DiscountType", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -409,8 +414,8 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d2c41197-f68e-4c92-bf29-a6e68b61a70f"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9492),
+                            Id = new Guid("1351dae0-b8d2-48cf-a13d-a4cd67856629"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(461),
                             Description = "Обычная летняя скидка",
                             IsActual = true,
                             Name = "Летняя скидка",
@@ -418,8 +423,8 @@ namespace SneakerShop.DataAdapters.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0e21665e-3aeb-48f5-ad21-8564bcafb3b2"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9496),
+                            Id = new Guid("73d85971-227e-4a77-8b2d-cca587857d13"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(466),
                             Description = "Обычная зимняя скидка",
                             IsActual = true,
                             Name = "Зимняя скидка",
@@ -427,8 +432,8 @@ namespace SneakerShop.DataAdapters.Migrations
                         },
                         new
                         {
-                            Id = new Guid("279847e2-08f0-4082-a2e0-1f62a8f6fd79"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9497),
+                            Id = new Guid("d4822de1-9340-4fc8-a5a4-13cb8c417261"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(467),
                             Description = "Особая скидка",
                             IsActual = true,
                             Name = "Особая скидка",
@@ -436,7 +441,7 @@ namespace SneakerShop.DataAdapters.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Good", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Good", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -495,55 +500,55 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3f219746-6957-44af-ad60-6703b6e1c7d8"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(8372),
+                            Id = new Guid("d5459aa8-575d-4bb6-b2c4-de3c9e1590eb"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(9425),
                             Description = "Куртка адидас чёрная ....",
-                            GoodSubtypeId = new Guid("0a8a7aac-5217-47ca-b635-448dd5603522"),
+                            GoodSubtypeId = new Guid("010e9af5-1d47-453c-8bf4-ca2acedf9f9f"),
                             ImageURL = "https://fullsourcemedia.s3.amazonaws.com/images/items/e/raw/J331_black_form_front.jpg",
                             IsActual = true,
-                            ManufacturerId = new Guid("dfe8ec89-4a13-4bbe-8285-935017f8ce23"),
+                            ManufacturerId = new Guid("15052e27-e29c-4ef6-a99a-d379812b5d53"),
                             Name = "Куртка адидас",
                             Price = 500m
                         },
                         new
                         {
-                            Id = new Guid("78e274be-042c-4d5d-b2cc-00d0cae437ce"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(8380),
+                            Id = new Guid("acb2055a-4ee4-48aa-9469-c9899db1e818"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(9438),
                             Description = "Кроссовки nike белые ....",
-                            GoodSubtypeId = new Guid("0afd27db-05c4-48ab-a612-d16192b40503"),
+                            GoodSubtypeId = new Guid("11a22f6f-8043-46cf-9d37-d2bf58b0ec95"),
                             ImageURL = "https://i.pinimg.com/originals/58/7d/82/587d82a229ceba80432497d594206c06.png",
                             IsActual = true,
-                            ManufacturerId = new Guid("f7e37f02-86bc-4892-951d-c9e6c9f0a7ce"),
+                            ManufacturerId = new Guid("e55eaea7-ef90-42fb-954e-ae74251cf961"),
                             Name = "Кроссовки nike",
                             Price = 2500m
                         },
                         new
                         {
-                            Id = new Guid("7afca5f6-7163-477c-bf1d-3f09036ac42b"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(8382),
+                            Id = new Guid("08660589-ac5a-4c6f-8704-d99f20d2658d"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(9440),
                             Description = "Рюкзак nike белые ....",
-                            GoodSubtypeId = new Guid("df52a8fc-3741-4bbb-9010-dba4f02475d3"),
+                            GoodSubtypeId = new Guid("e29440b7-f4c4-4b36-b144-3f2c4d681b51"),
                             ImageURL = "https://freepngimg.com/thumb/backpack/9-2-backpack-png-hd.png",
                             IsActual = true,
-                            ManufacturerId = new Guid("f7e37f02-86bc-4892-951d-c9e6c9f0a7ce"),
+                            ManufacturerId = new Guid("e55eaea7-ef90-42fb-954e-ae74251cf961"),
                             Name = "Рюкзаак nike",
                             Price = 5000m
                         },
                         new
                         {
-                            Id = new Guid("999dccb8-e1e9-4847-aa38-3735813816c6"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(8383),
+                            Id = new Guid("2fd0f100-5d72-434a-98eb-6a3065ebe39f"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(9441),
                             Description = "Футболка adidas синяя ....",
-                            GoodSubtypeId = new Guid("a5375bc2-ca16-4c01-9c12-f175a22f4419"),
+                            GoodSubtypeId = new Guid("d023cf9a-7b27-4bc4-b481-6fdff24d1faa"),
                             ImageURL = "https://c1.klipartz.com/pngpicture/301/681/sticker-png-tshirt-tshirt-clothing-dress-fashion-jacket-playera-laundry-aline.png",
                             IsActual = true,
-                            ManufacturerId = new Guid("dfe8ec89-4a13-4bbe-8285-935017f8ce23"),
+                            ManufacturerId = new Guid("15052e27-e29c-4ef6-a99a-d379812b5d53"),
                             Name = "Футболка adidas",
                             Price = 5000m
                         });
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.GoodSubtype", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.GoodSubtype", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -586,167 +591,167 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0a8a7aac-5217-47ca-b635-448dd5603522"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3636),
-                            GoodTypeId = new Guid("ccb924ac-bae7-4d6a-b606-c578e903be91"),
+                            Id = new Guid("010e9af5-1d47-453c-8bf4-ca2acedf9f9f"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(4998),
+                            GoodTypeId = new Guid("be06f6e5-66a3-4bf3-8217-8a8433daaf57"),
                             IsActual = true,
                             Name = "Куртки"
                         },
                         new
                         {
-                            Id = new Guid("a5375bc2-ca16-4c01-9c12-f175a22f4419"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3638),
-                            GoodTypeId = new Guid("ccb924ac-bae7-4d6a-b606-c578e903be91"),
+                            Id = new Guid("d023cf9a-7b27-4bc4-b481-6fdff24d1faa"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5016),
+                            GoodTypeId = new Guid("be06f6e5-66a3-4bf3-8217-8a8433daaf57"),
                             IsActual = true,
                             Name = "Футболки"
                         },
                         new
                         {
-                            Id = new Guid("ca079622-ee8e-414a-9193-1997c4176291"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3640),
-                            GoodTypeId = new Guid("ccb924ac-bae7-4d6a-b606-c578e903be91"),
+                            Id = new Guid("ad5f2ad3-68b2-404f-ac8d-92501f59a3e7"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5017),
+                            GoodTypeId = new Guid("be06f6e5-66a3-4bf3-8217-8a8433daaf57"),
                             IsActual = true,
                             Name = "Майки"
                         },
                         new
                         {
-                            Id = new Guid("c4c4f563-c53b-4928-9f80-806c943d7b25"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3642),
-                            GoodTypeId = new Guid("ccb924ac-bae7-4d6a-b606-c578e903be91"),
+                            Id = new Guid("76d27d28-25bb-44d0-8846-71bd288982c1"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5018),
+                            GoodTypeId = new Guid("be06f6e5-66a3-4bf3-8217-8a8433daaf57"),
                             IsActual = true,
                             Name = "Кофты"
                         },
                         new
                         {
-                            Id = new Guid("e6158c8e-2741-4f2e-bcca-f9597c72276c"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3644),
-                            GoodTypeId = new Guid("ccb924ac-bae7-4d6a-b606-c578e903be91"),
+                            Id = new Guid("c4d14640-e6b3-44a7-ae99-f88f2b097b65"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5019),
+                            GoodTypeId = new Guid("be06f6e5-66a3-4bf3-8217-8a8433daaf57"),
                             IsActual = true,
                             Name = "Джинсы"
                         },
                         new
                         {
-                            Id = new Guid("1e074d7f-ee5d-473c-8518-adf5656ea64a"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3647),
-                            GoodTypeId = new Guid("ccb924ac-bae7-4d6a-b606-c578e903be91"),
+                            Id = new Guid("b7672fd5-bd97-4caf-876f-7454e0022317"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5020),
+                            GoodTypeId = new Guid("be06f6e5-66a3-4bf3-8217-8a8433daaf57"),
                             IsActual = true,
                             Name = "Брюки"
                         },
                         new
                         {
-                            Id = new Guid("e68004d9-3187-4aba-934b-8728e53e6ef3"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3648),
-                            GoodTypeId = new Guid("ccb924ac-bae7-4d6a-b606-c578e903be91"),
+                            Id = new Guid("a194eb2f-8842-4e51-856a-f2093bba0c3a"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5021),
+                            GoodTypeId = new Guid("be06f6e5-66a3-4bf3-8217-8a8433daaf57"),
                             IsActual = true,
                             Name = "Юбки"
                         },
                         new
                         {
-                            Id = new Guid("fdccc078-04a0-432a-a2bb-db61f9e355ad"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3649),
-                            GoodTypeId = new Guid("ccb924ac-bae7-4d6a-b606-c578e903be91"),
+                            Id = new Guid("aaa82db2-f368-43e6-bfcf-472a9c125936"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5022),
+                            GoodTypeId = new Guid("be06f6e5-66a3-4bf3-8217-8a8433daaf57"),
                             IsActual = true,
                             Name = "Легинсы"
                         },
                         new
                         {
-                            Id = new Guid("70c088d2-7d32-401b-894c-c62f7f8457f9"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3651),
-                            GoodTypeId = new Guid("98f424e2-9ffb-458f-84d4-e8cff5f6585f"),
+                            Id = new Guid("24d97687-937a-4b70-951c-0f75338445d7"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5023),
+                            GoodTypeId = new Guid("8dcf657e-a3b2-497e-a6de-d2cc6687b2e8"),
                             IsActual = true,
                             Name = "Подштанники"
                         },
                         new
                         {
-                            Id = new Guid("df7dbffe-12c5-499e-b4f6-3bac85dcb10f"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3652),
-                            GoodTypeId = new Guid("98f424e2-9ffb-458f-84d4-e8cff5f6585f"),
+                            Id = new Guid("cce6bc71-3e60-4e0a-bc5e-fe3bbf2eea03"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5025),
+                            GoodTypeId = new Guid("8dcf657e-a3b2-497e-a6de-d2cc6687b2e8"),
                             IsActual = true,
                             Name = "Трусы"
                         },
                         new
                         {
-                            Id = new Guid("0afd27db-05c4-48ab-a612-d16192b40503"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3653),
-                            GoodTypeId = new Guid("efe665a4-2531-44da-a040-b7bb4da8ed22"),
+                            Id = new Guid("11a22f6f-8043-46cf-9d37-d2bf58b0ec95"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5026),
+                            GoodTypeId = new Guid("39234702-29d2-4abb-976e-a0bc8a8f4836"),
                             IsActual = true,
                             Name = "Кроссовки"
                         },
                         new
                         {
-                            Id = new Guid("644f7f44-2b50-4e96-9219-1292ac0f64d2"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3654),
-                            GoodTypeId = new Guid("efe665a4-2531-44da-a040-b7bb4da8ed22"),
+                            Id = new Guid("8d1315ef-d51b-4c28-8d87-214892b562fc"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5027),
+                            GoodTypeId = new Guid("39234702-29d2-4abb-976e-a0bc8a8f4836"),
                             IsActual = true,
                             Name = "Кеды"
                         },
                         new
                         {
-                            Id = new Guid("66b8b3b2-6f2a-4e07-b092-bb60bd9263b9"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3656),
-                            GoodTypeId = new Guid("efe665a4-2531-44da-a040-b7bb4da8ed22"),
+                            Id = new Guid("a43686cd-3835-4a6f-a4ea-ae801cf5196d"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5028),
+                            GoodTypeId = new Guid("39234702-29d2-4abb-976e-a0bc8a8f4836"),
                             IsActual = true,
                             Name = "Туфли"
                         },
                         new
                         {
-                            Id = new Guid("d1a9cb6b-b268-4e09-992e-eafd04ec4d2c"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3659),
-                            GoodTypeId = new Guid("efe665a4-2531-44da-a040-b7bb4da8ed22"),
+                            Id = new Guid("50d2dc32-0ef7-43f0-81ed-ead8c237dfb9"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5029),
+                            GoodTypeId = new Guid("39234702-29d2-4abb-976e-a0bc8a8f4836"),
                             IsActual = true,
                             Name = "Каблуки"
                         },
                         new
                         {
-                            Id = new Guid("df52a8fc-3741-4bbb-9010-dba4f02475d3"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3660),
-                            GoodTypeId = new Guid("5b297472-63c5-4329-afd8-dda647b953dd"),
+                            Id = new Guid("e29440b7-f4c4-4b36-b144-3f2c4d681b51"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5029),
+                            GoodTypeId = new Guid("5fbdc75d-be80-431e-979d-1e5e02b1ce5c"),
                             IsActual = true,
                             Name = "Рюкзаки"
                         },
                         new
                         {
-                            Id = new Guid("0d81af64-d21d-4758-adbc-dd2ef836a866"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3661),
-                            GoodTypeId = new Guid("5b297472-63c5-4329-afd8-dda647b953dd"),
+                            Id = new Guid("b70270fe-52ac-47d7-8ea0-d6b2a8c0a036"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5030),
+                            GoodTypeId = new Guid("5fbdc75d-be80-431e-979d-1e5e02b1ce5c"),
                             IsActual = true,
                             Name = "Сумки"
                         },
                         new
                         {
-                            Id = new Guid("a4a48d37-dcb1-40f0-86bd-f961e089a554"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3662),
-                            GoodTypeId = new Guid("5b297472-63c5-4329-afd8-dda647b953dd"),
+                            Id = new Guid("c6b8fe5a-f555-4290-8d61-cb862829d062"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5031),
+                            GoodTypeId = new Guid("5fbdc75d-be80-431e-979d-1e5e02b1ce5c"),
                             IsActual = true,
                             Name = "Барсетки"
                         },
                         new
                         {
-                            Id = new Guid("1690e16c-509c-4b3f-a6fa-e4d5129a970f"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3663),
-                            GoodTypeId = new Guid("5b297472-63c5-4329-afd8-dda647b953dd"),
+                            Id = new Guid("efb5e640-9c7d-4a2b-a442-3064962f3a73"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5034),
+                            GoodTypeId = new Guid("5fbdc75d-be80-431e-979d-1e5e02b1ce5c"),
                             IsActual = true,
                             Name = "Кольца"
                         },
                         new
                         {
-                            Id = new Guid("c2a82456-2e98-4d85-8c9a-8a7c04196bc4"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3664),
-                            GoodTypeId = new Guid("5b297472-63c5-4329-afd8-dda647b953dd"),
+                            Id = new Guid("ce9e4965-f0ae-4c69-9aaa-fe9642c85a32"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5035),
+                            GoodTypeId = new Guid("5fbdc75d-be80-431e-979d-1e5e02b1ce5c"),
                             IsActual = true,
                             Name = "Браслеты"
                         },
                         new
                         {
-                            Id = new Guid("7f259ec8-b615-4245-b761-95888bbfadd1"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3665),
-                            GoodTypeId = new Guid("5b297472-63c5-4329-afd8-dda647b953dd"),
+                            Id = new Guid("ddcea7c9-521a-4b4d-8dc9-dbafda0342fa"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(5036),
+                            GoodTypeId = new Guid("5fbdc75d-be80-431e-979d-1e5e02b1ce5c"),
                             IsActual = true,
                             Name = "Перчатки"
                         });
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.GoodType", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.GoodType", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -784,35 +789,35 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ccb924ac-bae7-4d6a-b606-c578e903be91"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3564),
+                            Id = new Guid("be06f6e5-66a3-4bf3-8217-8a8433daaf57"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(4950),
                             IsActual = true,
                             Name = "Верхняя одежда"
                         },
                         new
                         {
-                            Id = new Guid("98f424e2-9ffb-458f-84d4-e8cff5f6585f"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3589),
+                            Id = new Guid("8dcf657e-a3b2-497e-a6de-d2cc6687b2e8"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(4968),
                             IsActual = true,
                             Name = "Нижняя одежда"
                         },
                         new
                         {
-                            Id = new Guid("efe665a4-2531-44da-a040-b7bb4da8ed22"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3590),
+                            Id = new Guid("39234702-29d2-4abb-976e-a0bc8a8f4836"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(4970),
                             IsActual = true,
                             Name = "Обувь"
                         },
                         new
                         {
-                            Id = new Guid("5b297472-63c5-4329-afd8-dda647b953dd"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(3591),
+                            Id = new Guid("5fbdc75d-be80-431e-979d-1e5e02b1ce5c"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(4971),
                             IsActual = true,
                             Name = "Аксессуары"
                         });
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Manufacturer", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Manufacturer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -854,39 +859,39 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("dfe8ec89-4a13-4bbe-8285-935017f8ce23"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(6290),
+                            Id = new Guid("15052e27-e29c-4ef6-a99a-d379812b5d53"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(7389),
                             Description = "Адики .......",
                             IsActual = true,
                             Name = "Adidas"
                         },
                         new
                         {
-                            Id = new Guid("f7e37f02-86bc-4892-951d-c9e6c9f0a7ce"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(6338),
+                            Id = new Guid("e55eaea7-ef90-42fb-954e-ae74251cf961"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(7395),
                             Description = "Найки ..........",
                             IsActual = true,
                             Name = "Nke"
                         },
                         new
                         {
-                            Id = new Guid("c673879d-cb67-48c8-852b-cce9b7056e0c"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(6340),
+                            Id = new Guid("dea7b10c-8b02-4af8-b587-737f11914062"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(7396),
                             Description = "Гучи ..........",
                             IsActual = true,
                             Name = "Gucci"
                         },
                         new
                         {
-                            Id = new Guid("8f623ecb-f2dc-4d04-b344-fe4a0abed041"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(6341),
+                            Id = new Guid("431ef5bf-2da3-4426-af11-ccb776773e09"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 80, DateTimeKind.Local).AddTicks(7397),
                             Description = "Томми ..........",
                             IsActual = true,
                             Name = "Tommy Hilfiger"
                         });
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Order", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -926,7 +931,7 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.OrderedGood", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.OrderedGood", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -981,7 +986,7 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.ToTable("OrderedGoods");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Size", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Size", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -1024,177 +1029,177 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ae2641d8-fe7c-4864-84a9-d513d22033d7"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9251),
-                            GoodSubtypeId = new Guid("0a8a7aac-5217-47ca-b635-448dd5603522"),
+                            Id = new Guid("c8180835-6942-4e2b-99a4-7a602092685e"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(241),
+                            GoodSubtypeId = new Guid("010e9af5-1d47-453c-8bf4-ca2acedf9f9f"),
                             IsActual = true,
                             Name = "XXL"
                         },
                         new
                         {
-                            Id = new Guid("506b1374-8e93-4602-aad2-9a3f5c1e1bac"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9261),
-                            GoodSubtypeId = new Guid("0a8a7aac-5217-47ca-b635-448dd5603522"),
+                            Id = new Guid("ab74a4e2-728b-4dfe-bc7a-e6c119d895b0"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(248),
+                            GoodSubtypeId = new Guid("010e9af5-1d47-453c-8bf4-ca2acedf9f9f"),
                             IsActual = true,
                             Name = "XL"
                         },
                         new
                         {
-                            Id = new Guid("b191bb3e-67b2-42d8-ad4f-5ec2d3c7274f"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9264),
-                            GoodSubtypeId = new Guid("0a8a7aac-5217-47ca-b635-448dd5603522"),
+                            Id = new Guid("6727e37f-8289-4c4c-a4ae-fd88f9607a8d"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(249),
+                            GoodSubtypeId = new Guid("010e9af5-1d47-453c-8bf4-ca2acedf9f9f"),
                             IsActual = true,
                             Name = "L"
                         },
                         new
                         {
-                            Id = new Guid("37d47ba1-145f-4980-8258-e937adc11298"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9265),
-                            GoodSubtypeId = new Guid("0a8a7aac-5217-47ca-b635-448dd5603522"),
+                            Id = new Guid("5ec65441-21e5-4245-909d-6372eb2f6cad"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(276),
+                            GoodSubtypeId = new Guid("010e9af5-1d47-453c-8bf4-ca2acedf9f9f"),
                             IsActual = true,
                             Name = "M"
                         },
                         new
                         {
-                            Id = new Guid("75fa43a5-87ed-40a0-bcfe-87288ce17236"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9267),
-                            GoodSubtypeId = new Guid("0a8a7aac-5217-47ca-b635-448dd5603522"),
+                            Id = new Guid("cd2b66d4-6921-4248-975b-9142149946a9"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(278),
+                            GoodSubtypeId = new Guid("010e9af5-1d47-453c-8bf4-ca2acedf9f9f"),
                             IsActual = true,
                             Name = "S"
                         },
                         new
                         {
-                            Id = new Guid("de6e51c7-f9ed-4f97-81de-f2037ad0cab7"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9295),
-                            GoodSubtypeId = new Guid("0a8a7aac-5217-47ca-b635-448dd5603522"),
+                            Id = new Guid("e102460c-a053-40ac-b4c2-a45aa36051aa"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(284),
+                            GoodSubtypeId = new Guid("010e9af5-1d47-453c-8bf4-ca2acedf9f9f"),
                             IsActual = true,
                             Name = "XS"
                         },
                         new
                         {
-                            Id = new Guid("589bc477-bc8d-4800-b5f5-372b34804633"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9296),
-                            GoodSubtypeId = new Guid("0afd27db-05c4-48ab-a612-d16192b40503"),
+                            Id = new Guid("e9b1d35a-d658-4995-86f3-422f47d0eea0"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(285),
+                            GoodSubtypeId = new Guid("11a22f6f-8043-46cf-9d37-d2bf58b0ec95"),
                             IsActual = true,
                             Name = "XXL"
                         },
                         new
                         {
-                            Id = new Guid("020845de-8b18-4177-afe5-a2f10e5b5aa1"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9297),
-                            GoodSubtypeId = new Guid("0afd27db-05c4-48ab-a612-d16192b40503"),
+                            Id = new Guid("2f59ee82-7737-4457-aec2-538fc071f10a"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(286),
+                            GoodSubtypeId = new Guid("11a22f6f-8043-46cf-9d37-d2bf58b0ec95"),
                             IsActual = true,
                             Name = "XL"
                         },
                         new
                         {
-                            Id = new Guid("785121e7-ead3-49d9-ade7-64e6905e387d"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9298),
-                            GoodSubtypeId = new Guid("0afd27db-05c4-48ab-a612-d16192b40503"),
+                            Id = new Guid("1a22db0b-4c71-41f7-ab8e-5a4c6ec73352"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(287),
+                            GoodSubtypeId = new Guid("11a22f6f-8043-46cf-9d37-d2bf58b0ec95"),
                             IsActual = true,
                             Name = "L"
                         },
                         new
                         {
-                            Id = new Guid("f820fb80-7c7c-4c93-bc2c-a2df2e956e68"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9302),
-                            GoodSubtypeId = new Guid("0afd27db-05c4-48ab-a612-d16192b40503"),
+                            Id = new Guid("4bdc91da-1aa0-4247-bf10-0e28cb1e3d5b"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(289),
+                            GoodSubtypeId = new Guid("11a22f6f-8043-46cf-9d37-d2bf58b0ec95"),
                             IsActual = true,
                             Name = "M"
                         },
                         new
                         {
-                            Id = new Guid("71891871-80ee-4324-9eb2-a705f5f763c0"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9303),
-                            GoodSubtypeId = new Guid("0afd27db-05c4-48ab-a612-d16192b40503"),
+                            Id = new Guid("e6a4bcfa-e81b-425e-bd08-ab347fac28c7"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(290),
+                            GoodSubtypeId = new Guid("11a22f6f-8043-46cf-9d37-d2bf58b0ec95"),
                             IsActual = true,
                             Name = "S"
                         },
                         new
                         {
-                            Id = new Guid("e11f758c-2ebc-4f86-b2f6-086d39c2603c"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9304),
-                            GoodSubtypeId = new Guid("0afd27db-05c4-48ab-a612-d16192b40503"),
+                            Id = new Guid("1d083484-10f9-481a-9285-a04048b87024"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(291),
+                            GoodSubtypeId = new Guid("11a22f6f-8043-46cf-9d37-d2bf58b0ec95"),
                             IsActual = true,
                             Name = "XS"
                         },
                         new
                         {
-                            Id = new Guid("3f91763f-2ad9-4cd9-a838-2f91375f309e"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9305),
-                            GoodSubtypeId = new Guid("df52a8fc-3741-4bbb-9010-dba4f02475d3"),
+                            Id = new Guid("756a9ffd-8c08-4585-ae11-4c605e903b17"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(292),
+                            GoodSubtypeId = new Guid("e29440b7-f4c4-4b36-b144-3f2c4d681b51"),
                             IsActual = true,
                             Name = "XXL"
                         },
                         new
                         {
-                            Id = new Guid("021d2911-cd32-45af-a907-18025b2f1506"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9306),
-                            GoodSubtypeId = new Guid("df52a8fc-3741-4bbb-9010-dba4f02475d3"),
+                            Id = new Guid("09abec63-1553-406e-82eb-134aac905f48"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(295),
+                            GoodSubtypeId = new Guid("e29440b7-f4c4-4b36-b144-3f2c4d681b51"),
                             IsActual = true,
                             Name = "XL"
                         },
                         new
                         {
-                            Id = new Guid("ea0babb6-ab69-4579-9a6c-40bb38eaa5ea"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9307),
-                            GoodSubtypeId = new Guid("df52a8fc-3741-4bbb-9010-dba4f02475d3"),
+                            Id = new Guid("67bd71ef-e889-4402-b58e-c79b718732a9"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(296),
+                            GoodSubtypeId = new Guid("e29440b7-f4c4-4b36-b144-3f2c4d681b51"),
                             IsActual = true,
                             Name = "M"
                         },
                         new
                         {
-                            Id = new Guid("ba3500df-7773-4b0c-a5f8-41217f7f149f"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9308),
-                            GoodSubtypeId = new Guid("df52a8fc-3741-4bbb-9010-dba4f02475d3"),
+                            Id = new Guid("843f6d8d-f0c5-4b6b-9e2c-e8a39e14142d"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(297),
+                            GoodSubtypeId = new Guid("e29440b7-f4c4-4b36-b144-3f2c4d681b51"),
                             IsActual = true,
                             Name = "S"
                         },
                         new
                         {
-                            Id = new Guid("f25f2964-756a-43a1-9131-e4aaca1b9ba2"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9309),
-                            GoodSubtypeId = new Guid("a5375bc2-ca16-4c01-9c12-f175a22f4419"),
+                            Id = new Guid("511aaf50-d268-4989-b341-61653a170088"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(298),
+                            GoodSubtypeId = new Guid("d023cf9a-7b27-4bc4-b481-6fdff24d1faa"),
                             IsActual = true,
                             Name = "XXL"
                         },
                         new
                         {
-                            Id = new Guid("b220d50e-b38e-4b98-ae8e-24051472ce20"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9313),
-                            GoodSubtypeId = new Guid("a5375bc2-ca16-4c01-9c12-f175a22f4419"),
+                            Id = new Guid("c8fdfbd8-dcaa-4bc2-b6ad-1953f71f331d"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(300),
+                            GoodSubtypeId = new Guid("d023cf9a-7b27-4bc4-b481-6fdff24d1faa"),
                             IsActual = true,
                             Name = "XL"
                         },
                         new
                         {
-                            Id = new Guid("9337aca7-0120-4385-900f-e782f65a500e"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9314),
-                            GoodSubtypeId = new Guid("a5375bc2-ca16-4c01-9c12-f175a22f4419"),
+                            Id = new Guid("a7d01673-acf2-454d-8071-4cc5e6f7b269"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(301),
+                            GoodSubtypeId = new Guid("d023cf9a-7b27-4bc4-b481-6fdff24d1faa"),
                             IsActual = true,
                             Name = "L"
                         },
                         new
                         {
-                            Id = new Guid("2ce462aa-17f2-46fa-bf2a-2b18bd7c0355"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9315),
-                            GoodSubtypeId = new Guid("a5375bc2-ca16-4c01-9c12-f175a22f4419"),
+                            Id = new Guid("b8a79dc2-e0dd-4a2f-9bc8-0fb05bc0919d"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(302),
+                            GoodSubtypeId = new Guid("d023cf9a-7b27-4bc4-b481-6fdff24d1faa"),
                             IsActual = true,
                             Name = "M"
                         },
                         new
                         {
-                            Id = new Guid("a6d26dd5-90cc-4b1f-aa0e-9cafe6baaa89"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9316),
-                            GoodSubtypeId = new Guid("a5375bc2-ca16-4c01-9c12-f175a22f4419"),
+                            Id = new Guid("ed24337d-59ae-4e4d-a2ca-417325ac6e33"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(303),
+                            GoodSubtypeId = new Guid("d023cf9a-7b27-4bc4-b481-6fdff24d1faa"),
                             IsActual = true,
                             Name = "S"
                         },
                         new
                         {
-                            Id = new Guid("2d57ef16-d1b2-4a90-be58-63cc342d6f99"),
-                            CreateDate = new DateTime(2024, 4, 24, 18, 20, 24, 626, DateTimeKind.Local).AddTicks(9317),
-                            GoodSubtypeId = new Guid("a5375bc2-ca16-4c01-9c12-f175a22f4419"),
+                            Id = new Guid("2fbefbcb-6fad-4c92-b86e-b00d5b0f40b8"),
+                            CreateDate = new DateTime(2024, 4, 28, 21, 32, 33, 81, DateTimeKind.Local).AddTicks(306),
+                            GoodSubtypeId = new Guid("d023cf9a-7b27-4bc4-b481-6fdff24d1faa"),
                             IsActual = true,
                             Name = "XS"
                         });
@@ -1211,7 +1216,7 @@ namespace SneakerShop.DataAdapters.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.AppUser", null)
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1220,7 +1225,7 @@ namespace SneakerShop.DataAdapters.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.AppUser", null)
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1235,7 +1240,7 @@ namespace SneakerShop.DataAdapters.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.AppUser", null)
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1244,33 +1249,33 @@ namespace SneakerShop.DataAdapters.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.AppUser", null)
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.BasketElement", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.BasketElement", b =>
                 {
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.Discount", "_Discount")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.Discount", "_Discount")
                         .WithMany("BasketElements")
                         .HasForeignKey("DiscountId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.Good", "_Good")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.Good", "_Good")
                         .WithMany("BasketElements")
                         .HasForeignKey("GoodId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.Size", "_Size")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.Size", "_Size")
                         .WithMany("BasketElements")
                         .HasForeignKey("GoodId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.AppUser", "_User")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.AppUser", "_User")
                         .WithMany("Basket")
                         .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1285,15 +1290,15 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.Navigation("_User");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Discount", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Discount", b =>
                 {
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.DiscountType", "_DiscountType")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.DiscountType", "_DiscountType")
                         .WithMany("Discounts")
                         .HasForeignKey("DiscountTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.Good", "_Good")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.Good", "_Good")
                         .WithMany("Discounts")
                         .HasForeignKey("GoodId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1304,15 +1309,15 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.Navigation("_Good");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Good", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Good", b =>
                 {
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.GoodSubtype", "_GoodSubtype")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.GoodSubtype", "_GoodSubtype")
                         .WithMany("Goods")
                         .HasForeignKey("GoodSubtypeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.Manufacturer", "_Manufacturer")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.Manufacturer", "_Manufacturer")
                         .WithMany("Goods")
                         .HasForeignKey("ManufacturerId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1323,9 +1328,9 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.Navigation("_Manufacturer");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.GoodSubtype", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.GoodSubtype", b =>
                 {
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.GoodType", "GoodType")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.GoodType", "GoodType")
                         .WithMany("GoodSubtypes")
                         .HasForeignKey("GoodTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1334,9 +1339,9 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.Navigation("GoodType");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Order", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Order", b =>
                 {
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.AppUser", "_User")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.AppUser", "_User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1345,26 +1350,26 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.Navigation("_User");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.OrderedGood", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.OrderedGood", b =>
                 {
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.Discount", "_Discount")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.Discount", "_Discount")
                         .WithMany("OrderedGoods")
                         .HasForeignKey("DiscountId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.Good", "_Good")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.Good", "_Good")
                         .WithMany("OrderedGoods")
                         .HasForeignKey("GoodId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.Order", "_Order")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.Order", "_Order")
                         .WithMany("OrderedGoods")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.Size", "_Size")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.Size", "_Size")
                         .WithMany("OrderedGoods")
                         .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1379,9 +1384,9 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.Navigation("_Size");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Size", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Size", b =>
                 {
-                    b.HasOne("SneakerShop.DataAdapters.Contracts.Models.Entities.GoodSubtype", "_GoodSubtype")
+                    b.HasOne("SneakerShop.DataAdapters.Models.Entities.GoodSubtype", "_GoodSubtype")
                         .WithMany("Sizes")
                         .HasForeignKey("GoodSubtypeId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1390,26 +1395,26 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.Navigation("_GoodSubtype");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.AppUser", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.AppUser", b =>
                 {
                     b.Navigation("Basket");
 
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Discount", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Discount", b =>
                 {
                     b.Navigation("BasketElements");
 
                     b.Navigation("OrderedGoods");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.DiscountType", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.DiscountType", b =>
                 {
                     b.Navigation("Discounts");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Good", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Good", b =>
                 {
                     b.Navigation("BasketElements");
 
@@ -1418,29 +1423,29 @@ namespace SneakerShop.DataAdapters.Migrations
                     b.Navigation("OrderedGoods");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.GoodSubtype", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.GoodSubtype", b =>
                 {
                     b.Navigation("Goods");
 
                     b.Navigation("Sizes");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.GoodType", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.GoodType", b =>
                 {
                     b.Navigation("GoodSubtypes");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Manufacturer", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Manufacturer", b =>
                 {
                     b.Navigation("Goods");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Order", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Order", b =>
                 {
                     b.Navigation("OrderedGoods");
                 });
 
-            modelBuilder.Entity("SneakerShop.DataAdapters.Contracts.Models.Entities.Size", b =>
+            modelBuilder.Entity("SneakerShop.DataAdapters.Models.Entities.Size", b =>
                 {
                     b.Navigation("BasketElements");
 

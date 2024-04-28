@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using SneakerShop.Core.Models.Auth;
+using SneakerShop.Core.ApplicationContext;
+using SneakerShop.Core.Models.Entities;
 using SneakerShop.Core.Models.Web;
 using SneakerShop.Core.Models.Web.Auth;
 using SneakerShop.Core.Services.Users;
@@ -16,17 +17,11 @@ namespace SneakerShop.WebAPI.Services.Impl
 
         private readonly UserManager<AppUser> _UserManager;
 
-        private readonly RoleManager<IdentityUserRole<Guid>> _RoleManager;
-
-        public AutificationService(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, 
-            RoleManager<IdentityUserRole<Guid>> roleManager)
+        public AutificationService(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
         {
             _SignInManager = signInManager;
             _UserManager = userManager;
-            _RoleManager = roleManager;
         }
-
-        #region Аутентификация пользователей
 
         public async Task<Result> GetCurrentUser()
         {
@@ -35,8 +30,9 @@ namespace SneakerShop.WebAPI.Services.Impl
                 var user = await _UserManager.FindByNameAsync(_SignInManager.Context.User.Identity.Name);
                 if (user != null)
                 {
-                    var role = await _UserManager.GetRolesAsync(user).;
-                    return new Result(true, user);
+                    var roleResult = await _UserManager.GetRolesAsync(user);
+                    var role = roleResult.First();
+                    return new Result(true, role);
                 }
             }
             return new Result(false, null, "Пользователь не найден !");
@@ -58,6 +54,7 @@ namespace SneakerShop.WebAPI.Services.Impl
             var user = await _UserManager.FindByNameAsync(registrationData.Login);
             if (user != null)
                 return new Result(false, null, "Пользователь с таким логином уже существует !");
+
             user = new AppUser() 
             { 
                 UserName = registrationData.Login,
@@ -65,56 +62,26 @@ namespace SneakerShop.WebAPI.Services.Impl
                 FirstName = registrationData.FirstName,
                 LastName = registrationData.LastName
             };
-            var result = await _UserManager.CreateAsync(user, registrationData.Password);
-            if (result.Succeeded)
+
+            var createUserResult = await _UserManager.CreateAsync(user, registrationData.Password);
+
+            if (createUserResult.Succeeded)
             {
+                var addToRoleResult = await _UserManager.AddToRoleAsync(user, Constants.CustomerUserRoleName);
+
+                if (addToRoleResult.Succeeded)
+                    return new Result(false, null, $"Не удалось добавить роль пользователю. {string.Join(Environment.NewLine, addToRoleResult.Errors)}");
+
                 await _SignInManager.SignInAsync(user, true);
                 return new Result(true, user);
             }
-            return new Result(false, null, $"Регистрация не удалась. {string.Join(Environment.NewLine, result.Errors)}");
+
+            return new Result(false, null, $"Регистрация не удалась. {string.Join(Environment.NewLine, createUserResult.Errors)}");
         }
 
         public async Task SignOut()
         {
             await _SignInManager.SignOutAsync();
-        }
-
-        #endregion
-
-        #region Непосредственная работа с сущностями
-
-        public async Task<Result> AddNewUser(AppUser user)
-        {
-            return null;
-        }
-
-        public async Task<Result> UpdateUser(AppUser user)
-        {
-            return null;
-        }
-
-        public async Task<Result> RemoveUser(AppUser user)
-        {
-            return null;
-        }
-
-        #endregion
-
-        private async Task<AppUser?> GetUserByLoginAndPassword(LoginModel loginData)
-        {
-            var user = await _UserManager.FindByNameAsync(loginData.Login);
-            if (user != null)
-            {
-                if (user.PasswordHash == "")
-                    return user;
-            }
-            return null;
-        }
-
-        private string GetPasswordHash(string password)
-        {
-            var hasher = new PasswordHasher<AppUser>();
-            return hasher.HashPassword(null, password);
         }
 
     }

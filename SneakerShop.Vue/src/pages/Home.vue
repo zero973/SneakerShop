@@ -33,12 +33,11 @@
 	import { ref, reactive, onMounted, watch, provide } from 'vue'
 	import axios from 'axios'
 	import { debounce } from 'lodash'
-	import { convertObjectToUrl } from 'url-object-converter'
 
 	import GoodsList from '../components/HomePage/GoodsList.vue'
 	import BaseListParams from '../models/BaseListParams.js'
 	import ComplexFilter from '../models/ComplexFilter.js'
-	import { ComplexFilterOperators } from '../models/ComplexFilterOperators.js'
+	import { ComplexFilterOperators } from '../models/enums/ComplexFilterOperators.js'
 
 	const goodsSubtypes = ref([]);
 	const goods = ref([]);

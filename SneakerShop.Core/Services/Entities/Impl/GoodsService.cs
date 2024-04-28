@@ -1,30 +1,33 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SneakerShop.Core.Extensions;
 using SneakerShop.Core.Models.Entities;
 using SneakerShop.Core.Models.Web;
-using SneakerShop.Core.Services.Auth;
+using SneakerShop.Core.Repositories.Intf;
 using SneakerShop.Core.Services.Entities;
-using SneakerShop.DataAdapters.Contracts.Repositories.Intf;
+using SneakerShop.Core.Services.Users;
 
 namespace SneakerShop.Core.Services.Impl
 {
-    public class GoodsService : BaseEntityService<Good, DataAdapters.Contracts.Models.Entities.Good>, IGoodsService
+    public class GoodsService : BaseEntityService<Good>, IGoodsService
     {
 
-        public GoodsService(IDbEntitiesRepository dbRepository, IAutificationService autificationService, IMapper mapper)
-            : base(dbRepository, autificationService, mapper)
-        {
+        private readonly IDbEntitiesRepository<Good> DbRepository;
 
+        public GoodsService(IDbEntitiesRepository<Good> dbRepository, IAutificationService autificationService) 
+            : base(dbRepository, autificationService)
+        {
+            DbRepository = dbRepository;
         }
 
         public async Task<Result> GetGoodsWithAnyDiscount(BaseListParams baseParams)
         {
-            var goods = GetActualEntities(baseParams)
+            var result = DbRepository.GetAll()
                 .Where(x => x.Discounts.Any())
-                .WithFilter(baseParams);
+                .WithFilter(baseParams)
+                .WithOrdering(baseParams)
+                .WithPagination(baseParams);
 
-            return new Result(true, await goods.ToListAsync());
+            return new Result(true, await result.ToListAsync());
         }
 
     }

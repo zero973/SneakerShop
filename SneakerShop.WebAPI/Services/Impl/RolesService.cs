@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace SneakerShop.Core.Services.Users.Impl
 {
     public class RolesService : IRolesService
     {
+
+        private readonly RoleManager<IdentityUserRole<Guid>> _RoleManager;
+
+        public RolesService()
+        {
+            
+        }
+
+
 
     }
 }

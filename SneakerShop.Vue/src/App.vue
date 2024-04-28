@@ -15,7 +15,7 @@
 	import NavMenu from './components/NavMenu/NavMenu.vue'
 	import Basket from './components/Basket/Basket.vue'
 	import HomePage from './pages/Home.vue'
-	import { ComplexFilterOperators } from './models/ComplexFilterOperators'
+	import { ComplexFilterOperators } from './models/enums/ComplexFilterOperators'
 
 	//  Œ–«»Õ¿
 	const basket = ref([]);

@@ -1,5 +1,5 @@
-﻿using SneakerShop.Core.Models.Web;
-using SneakerShop.DataAdapters.Contracts.Models.Entities;
+﻿using SneakerShop.Core.Models.Entities.Intf;
+using SneakerShop.Core.Models.Web;
 
 namespace SneakerShop.Core.Services
 {
@@ -20,12 +20,6 @@ namespace SneakerShop.Core.Services
         /// </summary>
         /// <returns></returns>
         Task<Result> GetAll(BaseListParams baseParams);
-
-        /// <summary>
-        /// Получить все актуальные элементы (<see cref="IEntity.IsActual"/> = true) с пагинацией, сортировкой и фильтрацией
-        /// </summary>
-        /// <returns></returns>
-        Task<Result> GetActuals(BaseListParams baseParams);
 
         /// <summary>
         /// Добавить новую сущность
