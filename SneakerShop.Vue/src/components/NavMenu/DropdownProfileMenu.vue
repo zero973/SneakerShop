@@ -17,13 +17,18 @@
 		isWorker: Boolean
 	});
 
-	const onClickSignOut = () => {
+	async function signOut() {
 		try {
-			axios.post('/api/Autification/SignOut');
+			await axios.post('/api/Autification/SignOut');
+			window.location.href = "/";
 		}
 		catch (err) {
 			console.error(err);
 		}
+	}
+
+	const onClickSignOut = () => {
+		signOut();
 	}
 
 </script>

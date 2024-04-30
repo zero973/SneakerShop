@@ -34,8 +34,7 @@ namespace SneakerShop.Core.Services.Impl
 
         public virtual async Task<Result> GetAll(BaseListParams baseParams)
         {
-            var result = DbRepository.GetAll()
-                .WithFilter(baseParams)
+            var result = DbRepository.GetAll(baseParams.Filters)
                 .WithOrdering(baseParams)
                 .WithPagination(baseParams);
             return new Result(true, await result.ToListAsync());

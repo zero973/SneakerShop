@@ -27,7 +27,7 @@
 
         public override string ToString()
 		{
-			return $"Id: {Id}, GoodSubtypeI: {_GoodSubtype.Name}, Manufacturer: {_Manufacturer.Name}, Name: {Name}, Price: {Price}, Description: {Description}, ImageURL: {ImageURL}";
+			return $"Id: {Id}, GoodSubtype: {_GoodSubtype.Name}, Manufacturer: {_Manufacturer.Name}, Name: {Name}, Price: {Price}, Description: {Description}, ImageURL: {ImageURL}";
 		}
 
 	}

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SneakerShop.DataAdapters.Models.Entities
 {
@@ -17,6 +18,12 @@ namespace SneakerShop.DataAdapters.Models.Entities
         /// Фамилия
         /// </summary>
         public string LastName { get; set; }
+
+        /// <summary>
+        /// Роли пользователя
+        /// </summary>
+        [NotMapped]
+        public ICollection<string> Roles { get; set; }
 
         /// <summary>
         /// Заказы пользователя

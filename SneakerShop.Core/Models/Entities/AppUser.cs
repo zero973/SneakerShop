@@ -19,6 +19,11 @@ namespace SneakerShop.Core.Models.Entities
         public string LastName { get; set; }
 
         /// <summary>
+        /// Роли пользователя
+        /// </summary>
+        public ICollection<string> Roles { get; set; }
+
+        /// <summary>
         /// Заказы пользователя
         /// </summary>
         public ICollection<Order> Orders { get; set; }
@@ -27,11 +32,6 @@ namespace SneakerShop.Core.Models.Entities
         /// Товары в корзине пользователя
         /// </summary>
         public ICollection<BasketElement> Basket { get; set; }
-
-        /// <summary>
-        /// Роль пользователя
-        /// </summary>
-        public string Role { get; set; }
 
     }
 }

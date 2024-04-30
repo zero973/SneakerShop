@@ -1,4 +1,5 @@
 ﻿using SneakerShop.Core.Models.Entities.Intf;
+using SneakerShop.Core.Models.Web;
 
 namespace SneakerShop.Core.Repositories.Intf
 {
@@ -15,9 +16,9 @@ namespace SneakerShop.Core.Repositories.Intf
         Task<T> Get(Guid id);
 
         /// <summary>
-        /// Получить все сущности
+        /// Получить все сущности с фильтрами <paramref name="filters"/>
         /// </summary>
-        IQueryable<T> GetAll();
+        IQueryable<T> GetAll(IList<ComplexFilter> filters);
 
         /// <summary>
         /// Добавить сущность

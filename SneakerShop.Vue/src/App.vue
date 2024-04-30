@@ -1,6 +1,6 @@
 <template>
 	<div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14">
-		<NavMenu :totalBasketPrice="totalBasketPrice" @toggleBasket="toggleBasket" @toggleDropdownMenu="toggleDropdownMenu"/>
+		<NavMenu :totalBasketPrice="totalBasketPrice" @toggleBasket="toggleBasket"/>
 		<Basket v-if="isBasketOpen" @toggleBasket="toggleBasket" :basket="basket" />
 		<div class="p-10">
 			<RouterView />
@@ -42,6 +42,9 @@
 
 				const filter = new ComplexFilter('UserId', ComplexFilterOperators.Equals, userId);
 				params.Filters['UserId'] = filter;
+
+				const actualFilter = new ComplexFilter('IsActual', ComplexFilterOperators.Equals, true);
+				params.Filters.push(actualFilter);
 
 				const { data } = await axios.get('/api/Basket/GetActualEntities', { params });
 				basket.value = data.data;

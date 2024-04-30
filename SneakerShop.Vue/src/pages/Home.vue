@@ -54,7 +54,10 @@
 
 			params.OrderBy['name'] = true;
 
-			const { data } = await axios.get('/api/GoodSubtypes/GetActualEntities', { params });
+			const filter = new ComplexFilter('IsActual', ComplexFilterOperators.Equals, true);
+			params.Filters.push(filter);
+
+			const { data } = await axios.get('/api/GoodSubtypes/GetAll', { params });
 			goodsSubtypes.value = data.data.map((x) => ({
 				value: x.id,
 				text: x.name
@@ -85,8 +88,11 @@
 				params.Filters.push(filter);
 			}
 
+			const actualFilter = new ComplexFilter('IsActual', ComplexFilterOperators.Equals, true);
+			params.Filters.push(actualFilter);
+
 			params.Filters = JSON.stringify(params.Filters);
-			const { data } = await axios.get('/api/Goods/GetActualEntities', { params });
+			const { data } = await axios.get('/api/Goods/GetAll', { params });
 			goods.value = data.data;
 		}
 		catch (err) {
@@ -110,5 +116,5 @@
 
 	const onChangeSearchInput = debounce((event) => {
 		filters.goodName = event.target.value;
-	}, 300)
+	}, 1000)
 </script>

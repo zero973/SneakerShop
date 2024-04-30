@@ -57,7 +57,7 @@ void RegisterControllersWithServices(WebApplicationBuilder builder)
                 options.MigrationsAssembly("SneakerShop.DataAdapters");
             }));
 
-    builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>(opts =>
+    builder.Services.AddIdentity<SneakerShop.DataAdapters.Models.Entities.AppUser, IdentityRole<Guid>>(opts =>
     {
         opts.User.RequireUniqueEmail = true;
         opts.Password.RequiredLength = 4;

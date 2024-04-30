@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SneakerShop.Core.ApplicationContext;
-using SneakerShop.Core.Models.Entities;
 using SneakerShop.Core.Models.Web;
 using SneakerShop.Core.Models.Web.Auth;
 using SneakerShop.Core.Services.Users;
+using SneakerShop.DataAdapters.Models.Entities;
 
 namespace SneakerShop.WebAPI.Services.Impl
 {
@@ -30,9 +30,9 @@ namespace SneakerShop.WebAPI.Services.Impl
                 var user = await _UserManager.FindByNameAsync(_SignInManager.Context.User.Identity.Name);
                 if (user != null)
                 {
-                    var roleResult = await _UserManager.GetRolesAsync(user);
-                    var role = roleResult.First();
-                    return new Result(true, role);
+                    var roles = await _UserManager.GetRolesAsync(user);
+                    user.Roles = roles;
+                    return new Result(true, user);
                 }
             }
             return new Result(false, null, "Пользователь не найден !");
@@ -69,7 +69,7 @@ namespace SneakerShop.WebAPI.Services.Impl
             {
                 var addToRoleResult = await _UserManager.AddToRoleAsync(user, Constants.CustomerUserRoleName);
 
-                if (addToRoleResult.Succeeded)
+                if (!addToRoleResult.Succeeded)
                     return new Result(false, null, $"Не удалось добавить роль пользователю. {string.Join(Environment.NewLine, addToRoleResult.Errors)}");
 
                 await _SignInManager.SignInAsync(user, true);

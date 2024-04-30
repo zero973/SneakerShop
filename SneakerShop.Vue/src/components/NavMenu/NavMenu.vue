@@ -38,17 +38,18 @@
 
 	import DropdownProfileMenu from './DropdownProfileMenu.vue'
 	import AppUser from '../../models/AppUser';
+	import { UsersRoles } from '../../models/enums/UsersRoles';
 
-	const currentUser = ref({});
+	const currentUser = ref(new AppUser(undefined, undefined, undefined));
 
 	const isOpenDropdownMenu = ref(false);
 
 	const isAuthorized = computed(() => {
-		return currentUser.value != undefined;
+		return currentUser.value.isAuthorized();
 	});
 	const isWorker = computed(() => {
-		if (isAuthorized)
-			return currentUser.value.role == "Admin";
+		if (currentUser.value.isAuthorized())
+			return currentUser.value.isInRole(UsersRoles.Admin);
 		return false;
 	});
 
@@ -62,8 +63,8 @@
 		isOpenDropdownMenu.value = !isOpenDropdownMenu.value;
 		axios.get('/api/Autification/GetCurrentUser')
 			.then(x => {
-				if (x.data != undefined && x.data != null)
-					currentUser.value = new AppUser(x.data.id, x.data.login, x.data.password)
+				if (x.data != null && x.data.data != null)
+					currentUser.value = new AppUser(x.data.data.id, x.data.data.login, x.data.data.roles)
 			})
 			.catch(x => console.error(x));
 	}

@@ -42,7 +42,7 @@ namespace SneakerShop.WebAPI.Controllers.Users
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<JsonResult> SignOut()
+        public async new Task<JsonResult> SignOut()
         {
             await _AutificationService.SignOut();
             return new JsonResult(true);

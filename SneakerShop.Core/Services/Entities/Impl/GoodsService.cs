@@ -21,9 +21,8 @@ namespace SneakerShop.Core.Services.Impl
 
         public async Task<Result> GetGoodsWithAnyDiscount(BaseListParams baseParams)
         {
-            var result = DbRepository.GetAll()
+            var result = DbRepository.GetAll(baseParams.Filters)
                 .Where(x => x.Discounts.Any())
-                .WithFilter(baseParams)
                 .WithOrdering(baseParams)
                 .WithPagination(baseParams);
 

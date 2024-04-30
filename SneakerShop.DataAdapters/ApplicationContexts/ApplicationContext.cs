@@ -67,32 +67,6 @@ public class ApplicationContext : IdentityDbContext<AppUser, IdentityRole<Guid>,
         };
         builder.Entity<IdentityRole<Guid>>().HasData(adminRole, customerRole);
 
-        var user = new AppUser()
-        {
-            Id = Guid.NewGuid(),
-            UserName = "Admin",
-            FirstName = "Admin",
-            LastName = "Admin",
-            Email = "sneakershop@mail.ru",
-            EmailConfirmed = true,
-            PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "admin")
-        };
-        builder.Entity<AppUser>().HasData(user);
-
-        builder.Entity<IdentityUserRole<Guid>>().HasData(new List<IdentityUserRole<Guid>>() 
-        {
-            new IdentityUserRole<Guid>
-            {
-                RoleId = adminRole.Id,
-                UserId = user.Id
-            },
-            new IdentityUserRole<Guid>
-            {
-                RoleId = customerRole.Id,
-                UserId = user.Id
-            },
-        });
-
         #region GoodType
 
         var topClothes = new GoodType("Верхняя одежда");

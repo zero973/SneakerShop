@@ -47,16 +47,12 @@ namespace SneakerShop.Core.Extensions
         /// <summary>
         /// Применить фильтрацию
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <param name="baseParam"></param>
-        /// <returns></returns>
-        public static IQueryable<T> WithFilter<T>(this IQueryable<T> source, BaseListParams baseParam)
+        public static IQueryable<T> WithFilters<T>(this IQueryable<T> source, IList<ComplexFilter> filters)
         {
-            if (source == null || baseParam?.Filters == null)
+            if (source == null || filters == null)
                 return source;
 
-            foreach (var filter in baseParam.Filters)
+            foreach (var filter in filters)
             {
                 if (filter.Operator == ComplexFilterOperators.All)
                     continue;

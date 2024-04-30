@@ -1,9 +1,17 @@
 export default class AppUser {
 
-    constructor(Id, Login, Role) {
+    constructor(Id, Login, Roles) {
         this.Id = Id;
         this.Login = Login;
-        this.Role = Role;
+        this.Roles = Roles;
+    }
+
+    isAuthorized() {
+        return this.Id != undefined;
+    }
+
+    isInRole(roleName) {
+        return this.Roles.includes(roleName);
     }
 
 }
