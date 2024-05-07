@@ -10,7 +10,7 @@
 
         public Guid GoodTypeId { get; set; }
 
-        public GoodType? GoodType { get; set; }
+        public GoodType _GoodType { get; set; }
 
         public ICollection<Good> Goods { get; set; }
 

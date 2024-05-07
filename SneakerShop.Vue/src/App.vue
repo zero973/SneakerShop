@@ -15,7 +15,7 @@
 	import NavMenu from './components/NavMenu/NavMenu.vue'
 	import Basket from './components/Basket/Basket.vue'
 	import HomePage from './pages/Home.vue'
-	import { ComplexFilterOperators } from './models/enums/ComplexFilterOperators'
+	import { ComplexFilterOperators } from './models/Enums/ComplexFilterOperators'
 
 	//  Œ–«»Õ¿
 	const basket = ref([]);
@@ -46,6 +46,7 @@
 				const actualFilter = new ComplexFilter('IsActual', ComplexFilterOperators.Equals, true);
 				params.Filters.push(actualFilter);
 
+				params.Filters = JSON.stringify(params.Filters);
 				const { data } = await axios.get('/api/Basket/GetActualEntities', { params });
 				basket.value = data.data;
 			}

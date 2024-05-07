@@ -19,7 +19,7 @@
 <script setup>
 	import { ref } from 'vue'
 	import axios from 'axios'
-	import LoginModel from '../../models/LoginModel';
+	import LoginModel from '../../models/Auth/LoginModel';
 
 	const errorMessage = ref('');
 	const login = ref('');
@@ -31,8 +31,8 @@
 		await axios.post('/api/Autification/LogIn', params)
 			.then(x => {
 				if (x.data.isSuccess == true) {
-					// redirect to home
-					window.location.href = "/";
+					// redirect to last page
+					history.go(-1);
 				}
 				else {
 					errorMessage.value = x.data.message;

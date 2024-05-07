@@ -1,6 +1,6 @@
 <template>
 	<div class="grid grid-cols-4 gap-5" v-auto-animate>
-		<MainMenuGood v-for="good in goods" :key="good.id" :name="good.name" :imageURL="good.imageURL" :price="good.price"/>
+		<MainMenuGood v-for="good in goods" :key="good.id" :id="good.id" :name="good.name" :imageURL="good.imageURL" :price="good.price"/>
 	</div>
 </template>
 

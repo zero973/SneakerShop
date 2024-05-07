@@ -11,15 +11,15 @@ namespace SneakerShop.DataAdapters.Models.Entities
 
         public Guid GoodId { get; set; }
 
-        public Good? _Good { get; set; }
+        public Good _Good { get; set; }
 
         public Guid SizeId { get; set; }
 
-        public Size? _Size { get; set; }
+        public Size _Size { get; set; }
 
         public Guid UserId { get; set; }
 
-        public AppUser? _User { get; set; }
+        public AppUser _User { get; set; }
 
         public Guid? DiscountId { get; set; }
 

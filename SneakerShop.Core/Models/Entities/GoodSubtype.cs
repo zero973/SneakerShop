@@ -10,7 +10,7 @@
 
         public Guid GoodTypeId { get; set; }
 
-        public GoodType GoodType { get; set; }
+        public GoodType _GoodType { get; set; }
 
         public ICollection<Size> Sizes { get; set; }
 
@@ -21,7 +21,7 @@
 
         public override string ToString()
         {
-            return $"Id: {Id}, Name: {Name}, GoodType: {GoodType.Name}";
+            return $"Id: {Id}, Name: {Name}, GoodType: {_GoodType.Name}";
         }
 
     }

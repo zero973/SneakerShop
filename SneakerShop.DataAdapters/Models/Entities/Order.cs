@@ -10,7 +10,7 @@ namespace SneakerShop.DataAdapters.Models.Entities
 
         public Guid UserId { get; set; }
 
-        public AppUser? _User { get; set; }
+        public AppUser _User { get; set; }
 
         /// <summary>
         /// Статус заказа

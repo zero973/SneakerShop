@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SneakerShop.Core.Extensions;
 using SneakerShop.Core.Models.Entities.Intf;
 using SneakerShop.Core.Models.Web;
@@ -30,7 +31,7 @@ namespace SneakerShop.DataAdapters.Repositories.Impl
 
         public virtual async Task<T> Get(Guid id)
         {
-            var result = await _Context.Set<U>().FindAsync(id);
+            var result = await _Context.Set<U>().SingleOrDefaultAsync(x => x.Id == id);
             return _Mapper.Map<T>(result);
         }
 
@@ -47,30 +48,34 @@ namespace SneakerShop.DataAdapters.Repositories.Impl
         public virtual async Task<T> Add(T newEntity) 
         {
             var entityForSave = _Mapper.Map<U>(newEntity);
-            await _Context.Set<U>().AddAsync(entityForSave);
+            var savedEntity = await _Context.Set<U>().AddAsync(entityForSave);
+
             await SaveChanges();
-            return newEntity;
+            return _Mapper.Map<T>(savedEntity);
         }
 
         public virtual async Task AddRange(IEnumerable<T> newEntities) 
         {
             var entitiesForSave = newEntities.Select(_Mapper.Map<U>);
             await _Context.Set<U>().AddRangeAsync(entitiesForSave);
+
             await SaveChanges();
         }
 
         public virtual async Task<T> Update(T entity) 
         {
             var entityForSave = _Mapper.Map<U>(entity);
-            _Context.Set<U>().Update(entityForSave);
+            var savedEntity = _Context.Set<U>().Update(entityForSave);
+
             await SaveChanges();
-            return entity;
+            return _Mapper.Map<T>(savedEntity);
         }
 
         public virtual async Task UpdateRange(IEnumerable<T> entities) 
         {
             var entitiesForSave = entities.Select(_Mapper.Map<U>);
             _Context.Set<U>().UpdateRange(entitiesForSave);
+
             await SaveChanges();
         }
 
@@ -79,20 +84,20 @@ namespace SneakerShop.DataAdapters.Repositories.Impl
             entity.IsActual = false;
 
             var entityForSave = _Mapper.Map<U>(entity);
-            _Context.Set<U>().Update(entityForSave);
+            var savedEntity = _Context.Set<U>().Update(entityForSave);
 
             await SaveChanges();
-            return entity;
+            return _Mapper.Map<T>(savedEntity);
         }
 
         public virtual async Task<T> Remove(T entity) 
         {
             var entityToDelete = _Mapper.Map<U>(entity);
 
-            _Context.Set<U>().Remove(entityToDelete);
+            var deletedEntity = _Context.Set<U>().Remove(entityToDelete);
 
             await SaveChanges();
-            return entity;
+            return _Mapper.Map<T>(deletedEntity);
         }
 
         public virtual async Task RemoveRange(IEnumerable<T> entities) 

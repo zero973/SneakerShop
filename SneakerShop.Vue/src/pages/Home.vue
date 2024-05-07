@@ -37,7 +37,7 @@
 	import GoodsList from '../components/HomePage/GoodsList.vue'
 	import BaseListParams from '../models/BaseListParams.js'
 	import ComplexFilter from '../models/ComplexFilter.js'
-	import { ComplexFilterOperators } from '../models/enums/ComplexFilterOperators.js'
+	import { ComplexFilterOperators } from '../models/Enums/ComplexFilterOperators.js'
 
 	const goodsSubtypes = ref([]);
 	const goods = ref([]);
@@ -57,6 +57,7 @@
 			const filter = new ComplexFilter('IsActual', ComplexFilterOperators.Equals, true);
 			params.Filters.push(filter);
 
+			params.Filters = JSON.stringify(params.Filters);
 			const { data } = await axios.get('/api/GoodSubtypes/GetAll', { params });
 			goodsSubtypes.value = data.data.map((x) => ({
 				value: x.id,

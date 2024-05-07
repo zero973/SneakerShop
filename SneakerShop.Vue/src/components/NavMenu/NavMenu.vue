@@ -37,8 +37,8 @@
 	import axios from 'axios'
 
 	import DropdownProfileMenu from './DropdownProfileMenu.vue'
-	import AppUser from '../../models/AppUser';
-	import { UsersRoles } from '../../models/enums/UsersRoles';
+	import AppUser from '../../models/Auth/AppUser';
+	import { UsersRoles } from '../../models/Enums/UsersRoles';
 
 	const currentUser = ref(new AppUser(undefined, undefined, undefined));
 

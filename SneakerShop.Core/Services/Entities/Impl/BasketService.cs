@@ -6,10 +6,12 @@ namespace SneakerShop.Core.Services.Impl
 {
     public class BasketService : BaseEntityService<BasketElement>, IBasketService
     {
+
         public BasketService(IDbEntitiesRepository<BasketElement> dbRepository, IAutificationService autificationService) 
             : base(dbRepository, autificationService)
         {
 
         }
+
     }
 }

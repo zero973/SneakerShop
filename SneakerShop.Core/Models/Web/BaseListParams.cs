@@ -33,9 +33,9 @@
         public object? GetFilterValue(string fieldName)
         {
             fieldName = fieldName.ToLower();
-            if (Filters == null || !Filters.Any(x => x.Field == fieldName))
+            if (Filters == null || !Filters.Any(x => x.Field.ToUpper() == fieldName.ToUpper()))
                 return null;
-            return Filters.First(x => x.Field == fieldName).Value;
+            return Filters.First(x => x.Field.ToUpper() == fieldName.ToUpper()).Value;
         }
 
         public override string ToString()

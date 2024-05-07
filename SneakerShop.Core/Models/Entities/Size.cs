@@ -6,6 +6,8 @@
     public class Size : BaseEntity
     {
 
+        public Guid GoodSubtypeId { get; set; }
+
         public GoodSubtype _GoodSubtype { get; set; }
 
         public string Name { get; set; }

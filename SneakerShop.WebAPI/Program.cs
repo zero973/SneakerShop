@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using SneakerShop.Core.ApplicationContext;
 using SneakerShop.Core.Models.Entities;
 using SneakerShop.Core.Repositories.Intf;
 using SneakerShop.Core.Services;
@@ -49,8 +50,8 @@ void RegisterControllersWithServices(WebApplicationBuilder builder)
 
     var connString = builder.Configuration.GetConnectionString("PGDatabaseConnectionString");
 
-    builder.Services.AddDbContext<ApplicationContext>(options =>
-        options.UseNpgsql(connString,
+    builder.Services.AddDbContext<ApplicationContext>(opts =>
+        opts.UseNpgsql(connString,
             options =>
             {
                 options.SetPostgresVersion(new Version(14, 9, 0));
@@ -71,15 +72,21 @@ void RegisterControllersWithServices(WebApplicationBuilder builder)
         opts.Lockout.AllowedForNewUsers = true;
     }).AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
 
-    builder.Services.ConfigureApplicationCookie(options =>
+    builder.Services.ConfigureApplicationCookie(opts =>
     {
-        options.Cookie.Name = "SneakerShop.Identity.Cookie";
-        options.Cookie.HttpOnly = true;
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+        opts.Cookie.Name = "SneakerShop.Identity.Cookie";
+        opts.Cookie.HttpOnly = true;
+        opts.ExpireTimeSpan = TimeSpan.FromMinutes(5);
 
-        options.LoginPath = "/Account/Login";
-        options.AccessDeniedPath = "/Account/AccessDenied";
-        options.SlidingExpiration = true;
+        opts.LoginPath = "/Account/Login";
+        opts.AccessDeniedPath = "/Account/AccessDenied";
+        opts.SlidingExpiration = true;
+    });
+
+    builder.Services.AddAuthorization(opts =>
+    {
+        opts.AddPolicy(Constants.CustomerUserRoleName, policy => policy.RequireClaim(Constants.CustomerUserRoleName));
+        opts.AddPolicy(Constants.AdminUserRoleName, policy => policy.RequireClaim(Constants.AdminUserRoleName));
     });
 
     #region Repositories

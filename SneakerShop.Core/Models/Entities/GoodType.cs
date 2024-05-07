@@ -8,8 +8,6 @@
 
         public string Name { get; set; }
 
-		public ICollection<GoodSubtype> GoodSubtypes { get; set; }
-
 		public GoodType()
 		{
 

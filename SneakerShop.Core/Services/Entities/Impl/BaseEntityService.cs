@@ -43,13 +43,15 @@ namespace SneakerShop.Core.Services.Impl
         public virtual async Task<Result> Add(BasePostParams postParams)
         {
             var userResult = await _AutificationService.GetCurrentUser();
-            var entity = postParams.Entity as IEntity;
+            var user = userResult.Data as AppUser;
+            var entity = postParams.ToEntity<T>();
 
-            if (userResult == null || entity == null)
+            if (user == null || entity == null)
                 return new Result(false, null, "Не найден пользователь или не удалось сконвертировать сущность");
 
-            var user = userResult.Data as AppUser;
             entity.CreatedUserId = user.Id;
+
+            await DbRepository.Add(entity);
 
             return new Result(true, entity);
         }
@@ -57,14 +59,16 @@ namespace SneakerShop.Core.Services.Impl
         public virtual async Task<Result> Update(BasePostParams postParams)
         {
             var userResult = await _AutificationService.GetCurrentUser();
-            var entity = postParams.Entity as IEntity;
+            var user = userResult.Data as AppUser;
+            var entity = postParams.ToEntity<T>();
 
-            if (userResult == null || entity == null)
+            if (user == null || entity == null)
                 return new Result(false, null, "Не найден пользователь или не удалось сконвертировать сущность");
 
-            var user = userResult.Data as AppUser;
             entity.UpdatedUserId = user.Id;
             entity.UpdateDate = DateTime.Now;
+
+            await DbRepository.Update(entity);
 
             return new Result(true, entity);
         }
@@ -72,15 +76,16 @@ namespace SneakerShop.Core.Services.Impl
         public virtual async Task<Result> Delete(BasePostParams postParams)
         {
             var userResult = await _AutificationService.GetCurrentUser();
-            var entity = postParams.Entity as IEntity;
-
-            if (userResult == null || entity == null)
-                return new Result(false, null, "Не найден пользователь или не удалось сконвертировать сущность");
-
             var user = userResult.Data as AppUser;
+            var entity = postParams.ToEntity<T>();
+
+            if (user == null || entity == null)
+                return new Result(false, null, "Не найден пользователь или не удалось сконвертировать сущность");
 
             entity.DeletedUserId = user.Id;
             entity.DeleteDate = DateTime.Now;
+
+            await DbRepository.Delete(entity);
 
             return new Result(true, entity);
         }

@@ -6,7 +6,11 @@
 	public class Good : BaseEntity
 	{
 
+        public Guid GoodSubtypeId { get; set; }
+
         public GoodSubtype _GoodSubtype { get; set; }
+
+        public Guid ManufacturerId { get; set; }
 
         public Manufacturer _Manufacturer { get; set; }
 

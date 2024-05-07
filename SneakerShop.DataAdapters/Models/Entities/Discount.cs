@@ -3,18 +3,18 @@
 namespace SneakerShop.DataAdapters.Models.Entities
 {
 	/// <summary>
-	/// Дейсвующая скидка на определённом товаре
+	/// Действующая скидка на определённом товаре
 	/// </summary>
 	public class Discount : BaseEntity
     {
 
         public Guid GoodId { get; set; }
 
-        public Good? _Good { get; set; }
+        public Good _Good { get; set; }
 
         public Guid DiscountTypeId { get; set; }
 
-        public DiscountType? _DiscountType { get; set; }
+        public DiscountType _DiscountType { get; set; }
 
         /// <summary>
         /// Дата начала действия скидки

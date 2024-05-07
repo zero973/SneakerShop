@@ -11,6 +11,9 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\components\Info\" />
+    <Folder Include="src\components\GoodPage\" />
+    <Folder Include="src\models\Entities\" />
+    <Folder Include="src\pages\Admin\" />
+    <Folder Include="src\extensions\" />
   </ItemGroup>
 </Project>
