@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-	import { ref, onMounted, computed } from 'vue'
+	import { ref, onMounted, computed, inject } from 'vue'
 	import { useRoute } from 'vue-router'
 	import axios from 'axios'
 	import { Guid } from 'js-guid';
@@ -55,6 +55,8 @@
 	const choosedSize = ref({});
 	const basketElement = ref({});
 	const isAddedToCart = computed(() => !isEmpty(basketElement.value));
+
+	const fetchBasket = inject('fetchBasket');
 
 	const constAddToBasketButtonText = computed(() => {
 		if (!isAddedToCart.value)
@@ -141,6 +143,7 @@
 				const data = new BasketElement(basketElement.value.id);
 				await axios.post('/api/Basket/Delete', { data });
 				basketElement.value = {};
+				fetchBasket();
 			}
 			else {
 				if (isEmpty(choosedSize.value)) {
@@ -154,6 +157,7 @@
 						basketElement.value = x.data.data;
 					})
 					.catch(x => console.error(x));
+				fetchBasket();
 			}
 		}
 		else {

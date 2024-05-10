@@ -26,10 +26,17 @@
 
 	const fetchBasket = inject('fetchBasket');
 
-	const onDeleteBasketElement = () => {
-		const element = new BasketElement(props.id);
-		axios.post('/api/Basket/Delete', { element });
+	async function deleteBasketElement() {
+		try {
+			const element = new BasketElement(props.id);
+			await axios.post('/api/Basket/Delete', { element });
+		}
+		catch (err) {
+			console.error(err);
+		}
+	}
 
-		fetchBasket();
+	const onDeleteBasketElement = () => {
+		deleteBasketElement();
 	}
 </script>
