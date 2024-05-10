@@ -10,9 +10,9 @@ using SneakerShop.Core.Services.Entities.Impl;
 using SneakerShop.Core.Services.Impl;
 using SneakerShop.Core.Services.Users;
 using SneakerShop.Core.Services.Users.Impl;
-using SneakerShop.DataAdapters.ApplicationContexts;
-using SneakerShop.DataAdapters.Map.Profiles;
-using SneakerShop.DataAdapters.Repositories.Impl;
+using SneakerShop.DAL.ApplicationContexts;
+using SneakerShop.DAL.Map.Profiles;
+using SneakerShop.DAL.Repositories.Impl;
 using SneakerShop.WebAPI.Infrastructure.ModelBinderProviders;
 using SneakerShop.WebAPI.Services.Impl;
 using System.Globalization;
@@ -51,14 +51,16 @@ void RegisterControllersWithServices(WebApplicationBuilder builder)
     var connString = builder.Configuration.GetConnectionString("PGDatabaseConnectionString");
 
     builder.Services.AddDbContext<ApplicationContext>(opts =>
-        opts.UseNpgsql(connString,
-            options =>
-            {
-                options.SetPostgresVersion(new Version(14, 9, 0));
-                options.MigrationsAssembly("SneakerShop.DataAdapters");
-            }));
+    {
+        opts.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        opts.UseNpgsql(connString, options =>
+        {
+            options.SetPostgresVersion(new Version(14, 11, 0));
+            options.MigrationsAssembly("SneakerShop.DAL");
+        });
+    });
 
-    builder.Services.AddIdentity<SneakerShop.DataAdapters.Models.Entities.AppUser, IdentityRole<Guid>>(opts =>
+    builder.Services.AddIdentity<SneakerShop.DAL.Models.Entities.AppUser, IdentityRole<Guid>>(opts =>
     {
         opts.User.RequireUniqueEmail = true;
         opts.Password.RequiredLength = 4;

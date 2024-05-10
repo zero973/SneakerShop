@@ -38,7 +38,7 @@ namespace SneakerShop.WebAPI.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        [Authorize(Constants.AdminUserRoleName)]
+        [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Add([FromBody] BasePostParams postParams)
         {
             return new JsonResult(await _GoodSubtypesService.Add(postParams));
@@ -46,7 +46,7 @@ namespace SneakerShop.WebAPI.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        [Authorize(Constants.AdminUserRoleName)]
+        [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Update([FromBody] BasePostParams postParams)
         {
             return new JsonResult(await _GoodSubtypesService.Update(postParams));
@@ -54,7 +54,7 @@ namespace SneakerShop.WebAPI.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        [Authorize(Constants.AdminUserRoleName)]
+        [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Delete([FromBody] BasePostParams postParams)
         {
             return new JsonResult(await _GoodSubtypesService.Delete(postParams));

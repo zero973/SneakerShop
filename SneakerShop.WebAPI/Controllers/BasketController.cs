@@ -12,7 +12,7 @@ namespace SneakerShop.Web.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Constants.CustomerUserRoleName)]
+    [Authorize(Roles = Constants.CustomerUserRoleName)]
     public class BasketController : ControllerBase, IEntityController
     {
 

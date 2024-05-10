@@ -5,9 +5,9 @@ using SneakerShop.Core.Services.Users;
 
 namespace SneakerShop.Core.Services.Entities.Impl
 {
-    public class DiscountsService : BaseEntityService<DiscountType>, IDiscountsService
+    public class DiscountsService : BaseEntityService<Discount>, IDiscountsService
     {
-        public DiscountsService(IDbEntitiesRepository<DiscountType> dbRepository, IAutificationService autificationService) 
+        public DiscountsService(IDbEntitiesRepository<Discount> dbRepository, IAutificationService autificationService) 
             : base(dbRepository, autificationService)
         {
 

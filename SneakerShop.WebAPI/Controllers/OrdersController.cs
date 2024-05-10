@@ -12,7 +12,7 @@ namespace SneakerShop.WebAPI.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Constants.CustomerUserRoleName)]
+    [Authorize(Roles = Constants.CustomerUserRoleName)]
     public class OrdersController : ControllerBase, IEntityController
     {
 
@@ -46,7 +46,7 @@ namespace SneakerShop.WebAPI.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        [Authorize(Constants.AdminUserRoleName)]
+        [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Add([FromBody] BasePostParams postParams)
         {
             return new JsonResult(await _OrdersService.Add(postParams));
@@ -54,7 +54,7 @@ namespace SneakerShop.WebAPI.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        [Authorize(Constants.AdminUserRoleName)]
+        [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Update([FromBody] BasePostParams postParams)
         {
             return new JsonResult(await _OrdersService.Update(postParams));
@@ -62,7 +62,7 @@ namespace SneakerShop.WebAPI.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        [Authorize(Constants.AdminUserRoleName)]
+        [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Delete([FromBody] BasePostParams postParams)
         {
             return new JsonResult(await _OrdersService.Delete(postParams));

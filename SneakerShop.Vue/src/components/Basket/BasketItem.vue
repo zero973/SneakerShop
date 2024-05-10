@@ -12,8 +12,9 @@
 </template>
 
 <script setup>
-	import { inject } from 'vue'
-	import axios from 'axios'
+	import { inject } from 'vue';
+	import axios from 'axios';
+	import BasketElement from '../../models/Entities/BasketElement';
 
 	const props = defineProps({
 		id: String,
@@ -26,9 +27,8 @@
 	const fetchBasket = inject('fetchBasket');
 
 	const onDeleteBasketElement = () => {
-		axios.post('/api/Home/DeleteUserBasketElement', { id: props.id })
-			.then(response => { console.log(response.data); }) //todo убрать это ??
-			.catch(error => { console.error(error); });
+		const element = new BasketElement(props.id);
+		axios.post('/api/Basket/Delete', { element });
 
 		fetchBasket();
 	}

@@ -34,6 +34,7 @@
 	import axios from 'axios'
 	import { debounce } from 'lodash'
 
+	import CatLoading from '../components/Info/CatLoading.vue'
 	import GoodsList from '../components/HomePage/GoodsList.vue'
 	import BaseListParams from '../models/BaseListParams.js'
 	import ComplexFilter from '../models/ComplexFilter.js'

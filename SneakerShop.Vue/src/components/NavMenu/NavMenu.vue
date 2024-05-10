@@ -64,7 +64,7 @@
 		axios.get('/api/Autification/GetCurrentUser')
 			.then(x => {
 				if (x.data != null && x.data.data != null)
-					currentUser.value = new AppUser(x.data.data.id, x.data.data.login, x.data.data.roles)
+					currentUser.value = new AppUser(x.data.data.id, x.data.data.userName, x.data.data.roles)
 			})
 			.catch(x => console.error(x));
 	}

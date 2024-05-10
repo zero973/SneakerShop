@@ -19,14 +19,14 @@ namespace SneakerShop.Core.Services.Impl
             DbRepository = dbRepository;
         }
 
-        public async Task<Result> GetGoodsWithAnyDiscount(BaseListParams baseParams)
+        public async Task<Result<List<Good>>> GetGoodsWithAnyDiscount(BaseListParams baseParams)
         {
             var result = DbRepository.GetAll(baseParams.Filters)
                 .Where(x => x.Discounts.Any())
                 .WithOrdering(baseParams)
                 .WithPagination(baseParams);
 
-            return new Result(true, await result.ToListAsync());
+            return new Result<List<Good>>(true, await result.ToListAsync());
         }
 
     }

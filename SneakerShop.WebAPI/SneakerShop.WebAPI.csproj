@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SneakerShop.Core\SneakerShop.Core.csproj" />
-    <ProjectReference Include="..\SneakerShop.DataAdapters\SneakerShop.DataAdapters.csproj" />
+    <ProjectReference Include="..\SneakerShop.DAL\SneakerShop.DAL.csproj" />
   </ItemGroup>
 
 </Project>

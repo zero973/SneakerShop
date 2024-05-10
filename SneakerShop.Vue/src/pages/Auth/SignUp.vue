@@ -23,7 +23,7 @@
 			<input v-model="lastName" class="border rounded-md mx-2 py-1 pl-5 pr-1 outline-none focus:border-gray-400" type="text" placeholder="Фамилия" />
 		</div>
 		<div class="flex items-center text-center mx-auto my-5">
-			<button @click="onClickSignUp" class="bg-gray-500 w-auto h-auto p-2 rounded-xl text-white hover:bg-gray-900 cursor-pointer transition">Зарегистрироваться</button>
+			<button @click="onClickSignUp" class="bg-gray-900 w-auto h-auto p-2 rounded-xl text-white hover:bg-gray-500 cursor-pointer transition">Зарегистрироваться</button>
 		</div>
 	</div>
 </template>

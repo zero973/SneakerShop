@@ -15,6 +15,8 @@
 	import NavMenu from './components/NavMenu/NavMenu.vue'
 	import Basket from './components/Basket/Basket.vue'
 	import HomePage from './pages/Home.vue'
+	import BaseListParams from './models/BaseListParams'
+	import ComplexFilter from './models/ComplexFilter'
 	import { ComplexFilterOperators } from './models/Enums/ComplexFilterOperators'
 
 	// КОРЗИНА
@@ -30,25 +32,23 @@
 
 	async function fetchBasket() {
 		try {
-			const { userData } = await axios.get('/api/Autification/GetCurrentUser');
+			const { data } = await axios.get('/api/Autification/GetCurrentUser');
 
-			if (userData != undefined) {
-				const userId = userData.data.id;
+			if (data.data != null) {
+				const userId = data.data.id;
 
 				//todo удалить, т.к. это чисто для теста
 				const params = new BaseListParams(1, 10, {}, []); // todo добавить пагинацию
 
-				params.OrderBy['name'] = true;
-
-				const filter = new ComplexFilter('UserId', ComplexFilterOperators.Equals, userId);
-				params.Filters['UserId'] = filter;
-
-				const actualFilter = new ComplexFilter('IsActual', ComplexFilterOperators.Equals, true);
-				params.Filters.push(actualFilter);
+				params.Filters = [
+					new ComplexFilter('UserId', ComplexFilterOperators.Equals, userId),
+					new ComplexFilter('IsActual', ComplexFilterOperators.Equals, true)
+				];
 
 				params.Filters = JSON.stringify(params.Filters);
-				const { data } = await axios.get('/api/Basket/GetActualEntities', { params });
-				basket.value = data.data;
+				await axios.get('/api/Basket/GetAll', { params }).then(x => {
+					basket.value = x.data.data;
+				});
 			}
 		}
 		catch (err) {

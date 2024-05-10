@@ -12,7 +12,7 @@ namespace SneakerShop.Core.Services
         /// <summary>
         /// Сформировать заказ из пользовательской корзины
         /// </summary>
-        Task<Result> MakeOrderFromBasket();
+        Task<Result<Order>> MakeOrderFromBasket();
 
     }
 }

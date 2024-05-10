@@ -26,11 +26,11 @@ namespace SneakerShop.Core.Services.Entities.Impl
             DbRepository = dbRepository;
         }
 
-        public async Task<Result> MakeOrderFromBasket()
+        public async Task<Result<Order>> MakeOrderFromBasket()
         {
             var user = await GetCurrentUser();
             if (user == null)
-                return new Result(false, null, "Пользователь не авторизован");
+                return new Result<Order>(false, null, "Пользователь не авторизован");
 
             var order = new Order()
             {
@@ -63,7 +63,7 @@ namespace SneakerShop.Core.Services.Entities.Impl
 
             // foreach - добавить OrderedGood либо создать AddRange 
 
-            return new Result();
+            return new Result<Order>();
         }
 
         private async Task<AppUser?> GetCurrentUser()

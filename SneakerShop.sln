@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SneakerShop.WebAPI", "Sneak
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SneakerShop.Core", "SneakerShop.Core\SneakerShop.Core.csproj", "{FFC220E7-76B3-480D-B328-9D5659A0DED9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SneakerShop.DataAdapters", "SneakerShop.DataAdapters\SneakerShop.DataAdapters.csproj", "{4FF378ED-E6F6-4879-852F-A67FE7C54E93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SneakerShop.DAL", "SneakerShop.DAL\SneakerShop.DAL.csproj", "{4FF378ED-E6F6-4879-852F-A67FE7C54E93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

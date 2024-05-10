@@ -13,28 +13,28 @@ namespace SneakerShop.Core.Services
         /// Получить элемент по заданному <see cref="IEntity.Id"/>
         /// </summary>
         /// <returns></returns>
-        Task<Result> Get(BaseListParams baseParams);
+        Task<Result<T>> Get(BaseListParams baseParams);
 
         /// <summary>
         /// Получить все элементы с пагинацией, сортировкой и фильтрацией
         /// </summary>
         /// <returns></returns>
-        Task<Result> GetAll(BaseListParams baseParams);
+        Task<Result<List<T>>> GetAll(BaseListParams baseParams);
 
         /// <summary>
         /// Добавить новую сущность
         /// </summary>
-        Task<Result> Add(BasePostParams postParams);
+        Task<Result<T>> Add(BasePostParams postParams);
 
         /// <summary>
         /// Изменить сущность
         /// </summary>
-        Task<Result> Update(BasePostParams postParams);
+        Task<Result<T>> Update(BasePostParams postParams);
 
         /// <summary>
         /// Удалить данные о сущности
         /// </summary>
-        Task<Result> Delete(BasePostParams postParams);
+        Task<Result<T>> Delete(BasePostParams postParams);
 
     }
 }

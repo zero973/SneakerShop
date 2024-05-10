@@ -3,7 +3,7 @@
     /// <summary>
     /// Результат операции/действия
     /// </summary>
-    public class Result
+    public class Result<T> where T : class
     {
 
         /// <summary>
@@ -14,12 +14,12 @@
         /// <summary>
         /// Данные
         /// </summary>
-        public dynamic Data { get; set; }
+        public T Data { get; set; }
 
         /// <summary>
         /// Сообщение
         /// </summary>
-        public string? Message { get; set; }
+        public string Message { get; set; }
 
         public Result() { }
 
@@ -30,6 +30,7 @@
         public Result(string message)
         {
             IsSuccess = false;
+            Data = null;
             Message = message;
         }
 
@@ -39,7 +40,7 @@
         /// <param name="isSuccess">Предполагается, что = true</param>
         /// <param name="data">Данные</param>
         /// <param name="message">Сообщение об успешном выполнении</param>
-        public Result(bool isSuccess, dynamic data, string? message = null)
+        public Result(bool isSuccess, T data, string message = "")
         {
             IsSuccess = isSuccess;
             Data = data;

@@ -13,19 +13,19 @@ namespace SneakerShop.Core.Services.Users
         /// <summary>
         /// Получить текущего пользователя (<see cref="AppUser"/>)
         /// </summary>
-        Task<Result> GetCurrentUser();
+        Task<Result<AppUser>> GetCurrentUser();
 
         /// <summary>
         /// Вход
         /// </summary>
         /// <returns>Возвращает пользователя (<see cref="AppUser"/>)</returns>
-        Task<Result> LogIn(LoginModel loginData);
+        Task<Result<AppUser>> LogIn(LoginModel loginData);
 
         /// <summary>
         /// Регистрация
         /// </summary>
         /// <returns>Возвращает нового пользователя (<see cref="AppUser"/>)</returns>
-        Task<Result> SignUp(RegistrationModel registrationData);
+        Task<Result<AppUser>> SignUp(RegistrationModel registrationData);
 
         /// <summary>
         /// Выход

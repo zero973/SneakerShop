@@ -1,29 +1,34 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using SneakerShop.Core.ApplicationContext;
+using SneakerShop.Core.Models.Entities;
 using SneakerShop.Core.Models.Web;
 using SneakerShop.Core.Models.Web.Auth;
 using SneakerShop.Core.Services.Users;
-using SneakerShop.DataAdapters.Models.Entities;
 
 namespace SneakerShop.WebAPI.Services.Impl
 {
     /// <summary>
-    /// Сервис для работы с пользователями и их аутификацией
+    /// Сервис для работы с аутентификацией пользователей
     /// </summary>
     public class AutificationService : IAutificationService
     {
 
-        private readonly SignInManager<AppUser> _SignInManager;
+        private readonly SignInManager<DAL.Models.Entities.AppUser> _SignInManager;
 
-        private readonly UserManager<AppUser> _UserManager;
+        private readonly UserManager<DAL.Models.Entities.AppUser> _UserManager;
 
-        public AutificationService(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+        private readonly IMapper _Mapper;
+
+        public AutificationService(SignInManager<DAL.Models.Entities.AppUser> signInManager, 
+            UserManager<DAL.Models.Entities.AppUser> userManager, IMapper mapper)
         {
             _SignInManager = signInManager;
             _UserManager = userManager;
+            _Mapper = mapper;
         }
 
-        public async Task<Result> GetCurrentUser()
+        public async Task<Result<AppUser>> GetCurrentUser()
         {
             if (_SignInManager.Context.User.Identity.IsAuthenticated)
             {
@@ -32,30 +37,30 @@ namespace SneakerShop.WebAPI.Services.Impl
                 {
                     var roles = await _UserManager.GetRolesAsync(user);
                     user.Roles = roles;
-                    return new Result(true, user);
+                    return new Result<AppUser>(true, _Mapper.Map<AppUser>(user));
                 }
             }
-            return new Result(false, null, "Пользователь не найден !");
+            return new Result<AppUser>(false, null, "Пользователь не найден !");
         }
 
-        public async Task<Result> LogIn(LoginModel loginData)
+        public async Task<Result<AppUser>> LogIn(LoginModel loginData)
         {
             var result = await _SignInManager.PasswordSignInAsync(loginData.Login, loginData.Password, true, false);
             if (result.Succeeded)
             {
                 var user = await _UserManager.FindByNameAsync(loginData.Login);
-                return new Result(true, user);
+                return new Result<AppUser>(true, _Mapper.Map<AppUser>(user));
             }
-            return new Result(false, null, "Пользователь не найден !");
+            return new Result<AppUser>(false, null, "Пользователь не найден !");
         }
 
-        public async Task<Result> SignUp(RegistrationModel registrationData)
+        public async Task<Result<AppUser>> SignUp(RegistrationModel registrationData)
         {
             var user = await _UserManager.FindByNameAsync(registrationData.Login);
             if (user != null)
-                return new Result(false, null, "Пользователь с таким логином уже существует !");
+                return new Result<AppUser>(false, null, "Пользователь с таким логином уже существует !");
 
-            user = new AppUser() 
+            user = new DAL.Models.Entities.AppUser() 
             { 
                 UserName = registrationData.Login,
                 Email = registrationData.Email,
@@ -70,13 +75,14 @@ namespace SneakerShop.WebAPI.Services.Impl
                 var addToRoleResult = await _UserManager.AddToRoleAsync(user, Constants.CustomerUserRoleName);
 
                 if (!addToRoleResult.Succeeded)
-                    return new Result(false, null, $"Не удалось добавить роль пользователю. {string.Join(Environment.NewLine, addToRoleResult.Errors)}");
+                    return new Result<AppUser>(false, null, 
+                        $"Не удалось добавить роль пользователю. {string.Join(Environment.NewLine, addToRoleResult.Errors)}");
 
                 await _SignInManager.SignInAsync(user, true);
-                return new Result(true, user);
+                return new Result<AppUser>(true, _Mapper.Map<AppUser>(user));
             }
 
-            return new Result(false, null, $"Регистрация не удалась. {string.Join(Environment.NewLine, createUserResult.Errors)}");
+            return new Result<AppUser>(false, null, $"Регистрация не удалась. {string.Join(Environment.NewLine, createUserResult.Errors)}");
         }
 
         public async Task SignOut()

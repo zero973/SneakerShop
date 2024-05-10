@@ -13,7 +13,7 @@ namespace SneakerShop.Core.Services.Entities
         /// Получить все товары со скидкой с заданными фильтрами <paramref name="baseParams"/>
         /// </summary>
         /// <returns></returns>
-        Task<Result> GetGoodsWithAnyDiscount(BaseListParams baseParams);
+        Task<Result<List<Good>>> GetGoodsWithAnyDiscount(BaseListParams baseParams);
 
     }
 }

@@ -1,22 +1,23 @@
 <template>
 	<div class="relative">
-		<CatLoading :isLoading="isLoading" :delay="3000"/>
+		<CatLoading :isLoading="isLoading" :delay="1500"/>
 		<div class="grid grid-cols-3 gap-10">
 			<img :src="good.ImageURL" alt="/empty_good.png" />
 
-			<div class="grid grid-cols-1">
+			<div class="">
 				<p class="text-sm">{{good.GoodTypeName}} - {{good.GoodSubtypeName}}</p>
-				<b class="">{{good.Name}}</b>
-				<p class="">Цена: {{good.Price}} руб.</p>
-				<p class="">Размеры:</p>
-				<div class="grid grid-cols-4 gap-5" v-auto-animate>
-					<div v-for="size in good.Sizes" class="">
-						<input v-model="choosedSize" type="radio" :key="size.id" :id="size.id" :value="size.Name" />
-						<label :for="size.Id">{{size.Name}}</label>
+				<p class="mt-5">{{good.Name}}</p>
+				<p class="mt-5">Цена: {{good.Price}} руб.</p>
+				<p class="mt-5">Размеры:</p>
+				<p v-if="errorMessage.length > 0" class="mt-5 text-md text-red-600">{{errorMessage}}</p>
+				<div class="grid grid-cols-4 gap-5 pt-5" v-auto-animate>
+					<div v-for="size in good.Sizes" class="rounded-md border border-slate-500">
+						<input v-model="choosedSize" type="radio" :key="size.id" :id="size.id" :value="size.id" class="ml-1" />
+						<label :for="size.id" class="mx-1">{{size.name}}</label>
 					</div>
 				</div>
 				<button @click="onClickAddToBasket"
-						class="bg-lime-500 w-auto rounded-xl py-3 text-white hover:bg-lime-600 active:bg-lime-700 cursor-pointer transition">
+						class="bg-lime-500 w-auto rounded-xl py-3 px-3 mt-5 text-white hover:bg-lime-600 active:bg-lime-700 cursor-pointer transition">
 					{{constAddToBasketButtonText}}
 				</button>
 				<p class="mt-8">{{good.Description}}</p>
@@ -34,6 +35,7 @@
 	import { ref, onMounted, computed } from 'vue'
 	import { useRoute } from 'vue-router'
 	import axios from 'axios'
+	import { Guid } from 'js-guid';
 	import CatLoading from '../components/Info/CatLoading.vue'
 	import BaseListParams from '../models/BaseListParams';
 	import ComplexFilter from '../models/ComplexFilter';
@@ -47,6 +49,7 @@
 
 	const route = useRoute();
 	const isLoading = ref(false);
+	const errorMessage = ref('');
 
 	const good = ref(new Good(1, "", "", new Manufacturer(1, "", "", ""), "", 0, "", "", [new Size(1, "")]));
 	const choosedSize = ref({});
@@ -129,25 +132,32 @@
 		await axios.get('/api/Autification/GetCurrentUser')
 			.then(x => {
 				if (x.data != null && x.data.data != null)
-					currentUser.value = new AppUser(x.data.data.id, x.data.data.login, x.data.data.roles)
+					currentUser.value = new AppUser(x.data.data.id, x.data.data.userName, x.data.data.roles)
 			})
 			.catch(x => console.error(x));
 
 		if (currentUser.value.isAuthorized()) {
 			if (isAddedToCart.value) {
-				const params = new BasketElement(basketElement.value.Id);
-				await axios.post('/api/Basket/Delete', params);
+				const data = new BasketElement(basketElement.value.id);
+				await axios.post('/api/Basket/Delete', { data });
 				basketElement.value = {};
 			}
 			else {
-				const params = new BasketElement();
-				await axios.post('/api/Basket/Add', params)
+				if (isEmpty(choosedSize.value)) {
+					errorMessage.value = 'Выберите размер !';
+					return;
+				}
+				const data = new BasketElement(Guid.EMPTY, route.params.id, choosedSize.value, currentUser.value.Id, null, 1);
+				await axios.post('/api/Basket/Add', { data })
 					.then(x => {
 						// todo можно так оставить или надо через конструктор делать "new BasketElement(...)" ?
 						basketElement.value = x.data.data;
 					})
 					.catch(x => console.error(x));
 			}
+		}
+		else {
+			window.location.href = "/login";
 		}
 	}
 
