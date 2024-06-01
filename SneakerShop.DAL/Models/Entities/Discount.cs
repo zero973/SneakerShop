@@ -10,11 +10,11 @@ namespace SneakerShop.DAL.Models.Entities
 
         public Guid GoodId { get; set; }
 
-        public Good _Good { get; set; }
+        public Good Good { get; set; }
 
         public Guid DiscountTypeId { get; set; }
 
-        public DiscountType _DiscountType { get; set; }
+        public DiscountType DiscountType { get; set; }
 
         /// <summary>
         /// Дата начала действия скидки

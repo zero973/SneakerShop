@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SneakerShop.DAL.Models.Entities
@@ -12,11 +13,13 @@ namespace SneakerShop.DAL.Models.Entities
         /// <summary>
         /// Имя
         /// </summary>
+        [MaxLength(200)]
         public string FirstName { get; set; }
 
         /// <summary>
         /// Фамилия
         /// </summary>
+        [MaxLength(200)]
         public string LastName { get; set; }
 
         /// <summary>

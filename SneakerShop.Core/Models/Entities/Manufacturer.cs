@@ -10,17 +10,18 @@
 
         public string Description { get; set; }
 
-        public string ImageURL { get; set; }
+        public string ImageUrl { get; set; }
 
         public Manufacturer()
 		{
 			
 		}
 
-		public Manufacturer(string name, string description)
+		public Manufacturer(string name, string description, string imageUrl)
 		{
 			Name = name;
 			Description = description;
+			ImageUrl = imageUrl;
 		}
 
 		public override string ToString()

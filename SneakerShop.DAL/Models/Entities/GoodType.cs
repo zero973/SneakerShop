@@ -1,4 +1,6 @@
-﻿namespace SneakerShop.DAL.Models.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SneakerShop.DAL.Models.Entities
 {
 	/// <summary>
 	/// Тип товара (одежда, обувь, аксессуары)
@@ -6,6 +8,7 @@
 	public class GoodType : BaseEntity
 	{
 
+		[MaxLength(200)]
         public string Name { get; set; }
 
 		public ICollection<GoodSubtype> GoodSubtypes { get; set; }

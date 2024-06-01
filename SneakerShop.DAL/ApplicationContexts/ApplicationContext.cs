@@ -109,7 +109,7 @@ public class ApplicationContext : IdentityDbContext<AppUser, IdentityRole<Guid>,
 
         builder.Entity<GoodSubtype>(entity =>
         {
-            entity.HasOne(e => e._GoodType)
+            entity.HasOne(e => e.GoodType)
                 .WithMany(e => e.GoodSubtypes)
                 .HasForeignKey(e => e.GoodTypeId)
                 .OnDelete(DeleteBehavior.Restrict);
@@ -145,7 +145,7 @@ public class ApplicationContext : IdentityDbContext<AppUser, IdentityRole<Guid>,
 
         builder.Entity<Size>(entity =>
         {
-            entity.HasOne(e => e._GoodSubtype)
+            entity.HasOne(e => e.GoodSubtype)
                 .WithMany(e => e.Sizes)
                 .HasForeignKey(e => e.GoodSubtypeId)
                 .OnDelete(DeleteBehavior.Restrict);
@@ -182,12 +182,12 @@ public class ApplicationContext : IdentityDbContext<AppUser, IdentityRole<Guid>,
 
         builder.Entity<Good>(entity => 
         {
-            entity.HasOne(e => e._GoodSubtype)
+            entity.HasOne(e => e.GoodSubtype)
                 .WithMany(e => e.Goods)
                 .HasForeignKey(e => e.GoodSubtypeId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            entity.HasOne(e => e._Manufacturer)
+            entity.HasOne(e => e.Manufacturer)
                 .WithMany(e => e.Goods)
                 .HasForeignKey(e => e.ManufacturerId)
                 .OnDelete(DeleteBehavior.Restrict);
@@ -240,12 +240,12 @@ public class ApplicationContext : IdentityDbContext<AppUser, IdentityRole<Guid>,
 
         builder.Entity<Discount>(entity => 
         {
-            entity.HasOne(e => e._DiscountType)
+            entity.HasOne(e => e.DiscountType)
                 .WithMany(e => e.Discounts)
                 .HasForeignKey(e => e.DiscountTypeId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            entity.HasOne(e => e._Good)
+            entity.HasOne(e => e.Good)
                 .WithMany(e => e.Discounts)
                 .HasForeignKey(e => e.GoodId)
                 .OnDelete(DeleteBehavior.Restrict);
@@ -257,7 +257,7 @@ public class ApplicationContext : IdentityDbContext<AppUser, IdentityRole<Guid>,
 
         builder.Entity<Order>(entity =>
         {
-            entity.HasOne(e => e._User)
+            entity.HasOne(e => e.User)
                 .WithMany(e => e.Orders)
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
@@ -269,22 +269,22 @@ public class ApplicationContext : IdentityDbContext<AppUser, IdentityRole<Guid>,
 
         builder.Entity<OrderedGood>(entity =>
         {
-            entity.HasOne(e => e._Order)
+            entity.HasOne(e => e.Order)
                 .WithMany(e => e.OrderedGoods)
                 .HasForeignKey(e => e.OrderId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            entity.HasOne(e => e._Good)
+            entity.HasOne(e => e.Good)
                 .WithMany(e => e.OrderedGoods)
                 .HasForeignKey(e => e.GoodId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            entity.HasOne(e => e._Size)
+            entity.HasOne(e => e.Size)
                 .WithMany(e => e.OrderedGoods)
                 .HasForeignKey(e => e.SizeId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            entity.HasOne(e => e._Discount)
+            entity.HasOne(e => e.Discount)
                 .WithMany(e => e.OrderedGoods)
                 .HasForeignKey(e => e.DiscountId)
                 .OnDelete(DeleteBehavior.Restrict);
@@ -296,22 +296,22 @@ public class ApplicationContext : IdentityDbContext<AppUser, IdentityRole<Guid>,
 
         builder.Entity<BasketElement>(entity =>
         {
-            entity.HasOne(e => e._Good)
+            entity.HasOne(e => e.Good)
                 .WithMany(e => e.BasketElements)
                 .HasForeignKey(e => e.GoodId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            entity.HasOne(e => e._Size)
+            entity.HasOne(e => e.Size)
                 .WithMany(e => e.BasketElements)
                 .HasForeignKey(e => e.SizeId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            entity.HasOne(e => e._User)
+            entity.HasOne(e => e.User)
                 .WithMany(e => e.Basket)
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            entity.HasOne(e => e._Discount)
+            entity.HasOne(e => e.Discount)
                 .WithMany(e => e.BasketElements)
                 .HasForeignKey(e => e.DiscountId)
                 .OnDelete(DeleteBehavior.Restrict);

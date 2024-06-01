@@ -15,25 +15,25 @@ namespace SneakerShop.WebAPI.Controllers
     public class GoodSubtypesController : ControllerBase, IEntityController
     {
 
-        private readonly IGoodSubtypesService _GoodSubtypesService;
+        private readonly IGoodSubtypesService _goodSubtypesService;
 
         public GoodSubtypesController(IGoodSubtypesService goodSubtypesService)
         {
-            _GoodSubtypesService = goodSubtypesService;
+            _goodSubtypesService = goodSubtypesService;
         }
 
         [HttpGet]
         [Route("[action]")]
         public async Task<JsonResult> Get([FromQuery] BaseListParams baseParams)
         {
-            return new JsonResult(await _GoodSubtypesService.Get(baseParams));
+            return new JsonResult(await _goodSubtypesService.Get(baseParams));
         }
 
         [HttpGet]
         [Route("[action]")]
         public async Task<JsonResult> GetAll([FromQuery] BaseListParams baseParams)
         {
-            return new JsonResult(await _GoodSubtypesService.GetAll(baseParams));
+            return new JsonResult(await _goodSubtypesService.GetAll(baseParams));
         }
 
         [HttpPost]
@@ -41,7 +41,7 @@ namespace SneakerShop.WebAPI.Controllers
         [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Add([FromBody] BasePostParams postParams)
         {
-            return new JsonResult(await _GoodSubtypesService.Add(postParams));
+            return new JsonResult(await _goodSubtypesService.Add(postParams));
         }
 
         [HttpPost]
@@ -49,7 +49,7 @@ namespace SneakerShop.WebAPI.Controllers
         [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Update([FromBody] BasePostParams postParams)
         {
-            return new JsonResult(await _GoodSubtypesService.Update(postParams));
+            return new JsonResult(await _goodSubtypesService.Update(postParams));
         }
 
         [HttpPost]
@@ -57,7 +57,7 @@ namespace SneakerShop.WebAPI.Controllers
         [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Delete([FromBody] BasePostParams postParams)
         {
-            return new JsonResult(await _GoodSubtypesService.Delete(postParams));
+            return new JsonResult(await _goodSubtypesService.Delete(postParams));
         }
 
     }

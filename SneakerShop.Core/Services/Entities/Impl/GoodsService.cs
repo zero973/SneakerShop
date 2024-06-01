@@ -13,8 +13,8 @@ namespace SneakerShop.Core.Services.Impl
 
         private readonly IDbEntitiesRepository<Good> DbRepository;
 
-        public GoodsService(IDbEntitiesRepository<Good> dbRepository, IAutificationService autificationService) 
-            : base(dbRepository, autificationService)
+        public GoodsService(IDbEntitiesRepository<Good> dbRepository, IAuthenticationService authenticationService) 
+            : base(dbRepository, authenticationService)
         {
             DbRepository = dbRepository;
         }

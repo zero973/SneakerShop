@@ -34,5 +34,10 @@ namespace SneakerShop.Core.Models.Entities
             var other = obj as BaseEntity;
             return Id == other?.Id;
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

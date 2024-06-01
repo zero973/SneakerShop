@@ -32,7 +32,7 @@
 
 	async function fetchBasket() {
 		try {
-			const { data } = await axios.get('/api/Autification/GetCurrentUser');
+			const { data } = await axios.get('/api/Authentication/GetCurrentUser');
 
 			if (data.data != null) {
 				const userId = data.data.id;
@@ -47,7 +47,8 @@
 
 				params.Filters = JSON.stringify(params.Filters);
 				await axios.get('/api/Basket/GetAll', { params }).then(x => {
-					basket.value = x.data.data;
+          if (x.data.data != null)
+					  basket.value = x.data.data;
 				});
 			}
 		}

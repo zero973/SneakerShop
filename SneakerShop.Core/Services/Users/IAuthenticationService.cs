@@ -7,7 +7,7 @@ namespace SneakerShop.Core.Services.Users
     /// <summary>
     /// Сервис для работы с пользователями и их аутификацией
     /// </summary>
-    public interface IAutificationService
+    public interface IAuthenticationService
     {
 
         /// <summary>

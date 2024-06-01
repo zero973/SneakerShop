@@ -8,7 +8,7 @@
 
         public Guid GoodSubtypeId { get; set; }
 
-        public GoodSubtype _GoodSubtype { get; set; }
+        public GoodSubtype GoodSubtype { get; set; }
 
         public string Name { get; set; }
 
@@ -19,7 +19,7 @@
 
         public override string ToString()
         {
-            return $"Id: {Id}, Name: {Name}, GoodSubtype: {_GoodSubtype.Name}";
+            return $"Id: {Id}, Name: {Name}, GoodSubtype: {GoodSubtype.Name}";
         }
     }
 }

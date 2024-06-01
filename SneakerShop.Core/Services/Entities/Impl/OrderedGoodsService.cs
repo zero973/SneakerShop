@@ -7,8 +7,8 @@ namespace SneakerShop.Core.Services.Entities.Impl
 {
     public class OrderedGoodsService : BaseEntityService<OrderedGood>, IOrderedGoodsService
     {
-        public OrderedGoodsService(IDbEntitiesRepository<OrderedGood> dbRepository, IAutificationService autificationService) 
-            : base(dbRepository, autificationService)
+        public OrderedGoodsService(IDbEntitiesRepository<OrderedGood> dbRepository, IAuthenticationService authenticationService) 
+            : base(dbRepository, authenticationService)
         {
 
         }

@@ -16,12 +16,12 @@ namespace SneakerShop.Core.Services.Entities.Impl
 
         private readonly IDbEntitiesRepository<Order> DbRepository;
 
-        private readonly IAutificationService _AutificationService;
+        private readonly IAuthenticationService _AuthenticationService;
 
         private readonly IBasketService _BasketService;
 
-        public OrdersService(IDbEntitiesRepository<Order> dbRepository, IAutificationService autificationService) 
-            : base(dbRepository, autificationService)
+        public OrdersService(IDbEntitiesRepository<Order> dbRepository, IAuthenticationService authenticationService) 
+            : base(dbRepository, authenticationService)
         {
             DbRepository = dbRepository;
         }
@@ -34,7 +34,7 @@ namespace SneakerShop.Core.Services.Entities.Impl
 
             var order = new Order()
             {
-                _User = user,
+                User = user,
                 Status = OrderStatuses.Prepearing
             };
 
@@ -52,10 +52,10 @@ namespace SneakerShop.Core.Services.Entities.Impl
             var basket = data.Data as List<BasketElement>;
             var orderedGoods = basket.Select(x => new OrderedGood() 
             { 
-                _Order = order,
-                _Good = x._Good,
-                _Size = x._Size,
-                _Discount = x._Discount,
+                Order = order,
+                Good = x.Good,
+                Size = x.Size,
+                Discount = x.Discount,
                 Count = x.Count
             }).ToList();
 
@@ -68,7 +68,7 @@ namespace SneakerShop.Core.Services.Entities.Impl
 
         private async Task<AppUser?> GetCurrentUser()
         {
-            var data = await _AutificationService.GetCurrentUser();
+            var data = await _AuthenticationService.GetCurrentUser();
             return data.Data as AppUser;
         }
 

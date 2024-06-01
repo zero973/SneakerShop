@@ -10,7 +10,7 @@ namespace SneakerShop.DAL.Models.Entities
 
         public Guid UserId { get; set; }
 
-        public AppUser _User { get; set; }
+        public AppUser User { get; set; }
 
         /// <summary>
         /// Статус заказа

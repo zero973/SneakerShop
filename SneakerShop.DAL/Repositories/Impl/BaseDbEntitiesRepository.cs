@@ -19,62 +19,62 @@ namespace SneakerShop.DAL.Repositories.Impl
         where U : class, IEntity
     {
 
-        private readonly ApplicationContext _Context;
+        protected readonly ApplicationContext Context;
 
-        private readonly IMapper _Mapper;
+        protected readonly IMapper Mapper;
 
-        public BaseDbEntitiesRepository(ApplicationContext context, IMapper mapper)
+        protected BaseDbEntitiesRepository(ApplicationContext context, IMapper mapper)
         {
-            _Context = context;
-            _Mapper = mapper;
+            Context = context;
+            Mapper = mapper;
         }
 
         public virtual async Task<T> Get(Guid id)
         {
-            var result = await _Context.Set<U>().SingleOrDefaultAsync(x => x.Id == id);
-            return _Mapper.Map<T>(result);
+            var result = await Context.Set<U>().SingleOrDefaultAsync(x => x.Id == id);
+            return Mapper.Map<T>(result);
         }
 
         public virtual IQueryable<T> GetAll(IList<ComplexFilter> filters) 
         {
-            var result = _Context.Set<U>().AsQueryable();
+            var result = Context.Set<U>().AsQueryable();
 
             if (filters != null && filters.Any())
                 result = result.WithFilters(filters);
 
-            return _Mapper.ProjectTo<T>(result);
+            return Mapper.ProjectTo<T>(result);
         }
 
         public virtual async Task<T> Add(T newEntity) 
         {
-            var entityForSave = _Mapper.Map<U>(newEntity);
-            var savedEntity = await _Context.Set<U>().AddAsync(entityForSave);
+            var entityForSave = Mapper.Map<U>(newEntity);
+            var savedEntity = await Context.Set<U>().AddAsync(entityForSave);
 
             await SaveChanges();
-            return _Mapper.Map<T>(savedEntity.Entity);
+            return Mapper.Map<T>(savedEntity.Entity);
         }
 
         public virtual async Task AddRange(IEnumerable<T> newEntities) 
         {
-            var entitiesForSave = newEntities.Select(_Mapper.Map<U>);
-            await _Context.Set<U>().AddRangeAsync(entitiesForSave);
+            var entitiesForSave = newEntities.Select(Mapper.Map<U>);
+            await Context.Set<U>().AddRangeAsync(entitiesForSave);
 
             await SaveChanges();
         }
 
         public virtual async Task<T> Update(T entity) 
         {
-            var entityForSave = _Mapper.Map<U>(entity);
-            _Context.Set<U>().Update(entityForSave);
+            var entityForSave = Mapper.Map<U>(entity);
+            Context.Set<U>().Update(entityForSave);
 
             await SaveChanges();
-            return _Mapper.Map<T>(entity);
+            return Mapper.Map<T>(entity);
         }
 
         public virtual async Task UpdateRange(IEnumerable<T> entities) 
         {
-            var entitiesForSave = entities.Select(_Mapper.Map<U>);
-            _Context.Set<U>().UpdateRange(entitiesForSave);
+            var entitiesForSave = entities.Select(Mapper.Map<U>);
+            Context.Set<U>().UpdateRange(entitiesForSave);
 
             await SaveChanges();
         }
@@ -83,28 +83,28 @@ namespace SneakerShop.DAL.Repositories.Impl
         {
             entity.IsActual = false;
 
-            var entityForSave = _Mapper.Map<U>(entity);
-            _Context.Set<U>().Update(entityForSave);
+            var entityForSave = Mapper.Map<U>(entity);
+            Context.Set<U>().Update(entityForSave);
 
             await SaveChanges();
-            return _Mapper.Map<T>(entity);
+            return Mapper.Map<T>(entity);
         }
 
         public virtual async Task<T> Remove(T entity) 
         {
-            var entityToDelete = _Mapper.Map<U>(entity);
+            var entityToDelete = Mapper.Map<U>(entity);
 
-            _Context.Set<U>().Remove(entityToDelete);
+            Context.Set<U>().Remove(entityToDelete);
 
             await SaveChanges();
-            return _Mapper.Map<T>(entity);
+            return Mapper.Map<T>(entity);
         }
 
         public virtual async Task RemoveRange(IEnumerable<T> entities) 
         {
-            var entitiesToDelete = entities.Select(_Mapper.Map<U>);
+            var entitiesToDelete = entities.Select(Mapper.Map<U>);
 
-            _Context.Set<U>().RemoveRange(entitiesToDelete);
+            Context.Set<U>().RemoveRange(entitiesToDelete);
 
             await SaveChanges();
         }
@@ -115,7 +115,7 @@ namespace SneakerShop.DAL.Repositories.Impl
         /// <returns>Возвращает кол-во добавленных/изменённых строк</returns>
         protected virtual async Task<int> SaveChanges()
         {
-            return await _Context.SaveChangesAsync();
+            return await Context.SaveChangesAsync();
         }
 
     }

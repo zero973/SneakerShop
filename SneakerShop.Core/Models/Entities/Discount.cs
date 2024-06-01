@@ -8,11 +8,11 @@
 
         public Guid GoodId { get; set; }
 
-        public Good _Good { get; set; }
+        public Good Good { get; set; }
 
         public Guid DiscountTypeId { get; set; }
 
-        public DiscountType _DiscountType { get; set; }
+        public DiscountType DiscountType { get; set; }
 
         /// <summary>
         /// Дата начала действия скидки
@@ -31,7 +31,7 @@
 
         public override string ToString()
 		{
-			return $"Id: {Id}, Good: {_Good.Name}, DiscountType: {_DiscountType.Name}, StartDate: {StartDate.ToShortDateString()}, EndDate: {EndDate.ToShortDateString()}";
+			return $"Id: {Id}, Good: {Good.Name}, DiscountType: {DiscountType.Name}, StartDate: {StartDate.ToShortDateString()}, EndDate: {EndDate.ToShortDateString()}";
 		}
 
 	}

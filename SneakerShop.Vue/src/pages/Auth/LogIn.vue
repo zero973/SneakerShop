@@ -28,7 +28,7 @@
 	async function logInUser() {
 		errorMessage.value = '';
 		const params = new LoginModel(login.value, password.value);
-		await axios.post('/api/Autification/LogIn', params)
+		await axios.post('/api/Authentication/LogIn', params)
 			.then(x => {
 				if (x.data.isSuccess == true) {
 					// redirect to last page

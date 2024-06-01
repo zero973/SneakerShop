@@ -10,13 +10,13 @@ namespace SneakerShop.DAL.Map.Profiles
                 .ReverseMap();
 
             CreateMap<Core.Models.Entities.BasketElement, Models.Entities.BasketElement>()
-                .ForPath(x => x._Good._GoodSubtype, x => x.Ignore())
-                .ForPath(x => x._Size._GoodSubtype, x => x.Ignore())
-                .ForPath(x => x._User.Basket, x => x.Ignore())
+                .ForPath(x => x.Good.GoodSubtype, x => x.Ignore())
+                .ForPath(x => x.Size.GoodSubtype, x => x.Ignore())
+                .ForPath(x => x.User.Basket, x => x.Ignore())
                 .ReverseMap();
 
             CreateMap<Core.Models.Entities.Discount, Models.Entities.Discount>()
-                .ForPath(x => x._Good._GoodSubtype, x => x.Ignore())
+                .ForPath(x => x.Good.GoodSubtype, x => x.Ignore())
                 .ForPath(x => x.BasketElements, x => x.Ignore())
                 .ForPath(x => x.OrderedGoods, x => x.Ignore())
                 .ReverseMap();
@@ -25,7 +25,7 @@ namespace SneakerShop.DAL.Map.Profiles
                 .ReverseMap();
 
             CreateMap<Core.Models.Entities.Good, Models.Entities.Good>()
-                .ForPath(x => x._GoodSubtype._GoodType, x => x.Ignore())
+                .ForPath(x => x.GoodSubtype.GoodType, x => x.Ignore())
                 .ForPath(x => x.BasketElements, x => x.Ignore())
                 .ForPath(x => x.OrderedGoods, x => x.Ignore())
                 .ForPath(x => x.Discounts, x => x.Ignore())
@@ -46,13 +46,13 @@ namespace SneakerShop.DAL.Map.Profiles
                 .ReverseMap();
 
             CreateMap<Core.Models.Entities.OrderedGood, Models.Entities.OrderedGood>()
-                .ForPath(x => x._Good._GoodSubtype, x => x.Ignore())
-                .ForPath(x => x._Size._GoodSubtype, x => x.Ignore())
-                .ForPath(x => x._Discount._Good, x => x.Ignore())
+                .ForPath(x => x.Good.GoodSubtype, x => x.Ignore())
+                .ForPath(x => x.Size.GoodSubtype, x => x.Ignore())
+                .ForPath(x => x.Discount.Good, x => x.Ignore())
                 .ReverseMap();
 
             CreateMap<Core.Models.Entities.Size, Models.Entities.Size>()
-                .ForPath(x => x._GoodSubtype._GoodType, x => x.Ignore())
+                .ForPath(x => x.GoodSubtype.GoodType, x => x.Ignore())
                 .ReverseMap();
         }
     }

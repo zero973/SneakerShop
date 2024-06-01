@@ -43,7 +43,7 @@
 	async function signUp() {
 		errorMessage.value = '';
 		const params = new RegistrationModel(login.value, password.value, firstName.value, lastName.value, email.value);
-		await axios.post('/api/Autification/SignUp', params)
+		await axios.post('/api/Authentication/SignUp', params)
 			.then(x => {
 				if (x.data.isSuccess == true) {
 					// redirect to last page

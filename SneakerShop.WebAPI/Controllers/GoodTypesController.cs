@@ -15,25 +15,25 @@ namespace SneakerShop.WebAPI.Controllers
     public class GoodTypesController : ControllerBase, IEntityController
     {
 
-        private readonly IGoodTypesService _GoodTypesService;
+        private readonly IGoodTypesService _goodTypesService;
 
         public GoodTypesController(IGoodTypesService goodTypesService)
         {
-            _GoodTypesService = goodTypesService;
+            _goodTypesService = goodTypesService;
         }
 
         [HttpGet]
         [Route("[action]")]
         public async Task<JsonResult> Get([FromQuery] BaseListParams baseParams)
         {
-            return new JsonResult(await _GoodTypesService.Get(baseParams));
+            return new JsonResult(await _goodTypesService.Get(baseParams));
         }
 
         [HttpGet]
         [Route("[action]")]
         public async Task<JsonResult> GetAll([FromQuery] BaseListParams baseParams)
         {
-            return new JsonResult(await _GoodTypesService.GetAll(baseParams));
+            return new JsonResult(await _goodTypesService.GetAll(baseParams));
         }
 
         [HttpPost]
@@ -41,7 +41,7 @@ namespace SneakerShop.WebAPI.Controllers
         [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Add([FromBody] BasePostParams postParams)
         {
-            return new JsonResult(await _GoodTypesService.Add(postParams));
+            return new JsonResult(await _goodTypesService.Add(postParams));
         }
 
         [HttpPost]
@@ -49,7 +49,7 @@ namespace SneakerShop.WebAPI.Controllers
         [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Update([FromBody] BasePostParams postParams)
         {
-            return new JsonResult(await _GoodTypesService.Update(postParams));
+            return new JsonResult(await _goodTypesService.Update(postParams));
         }
 
         [HttpPost]
@@ -57,7 +57,7 @@ namespace SneakerShop.WebAPI.Controllers
         [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Delete([FromBody] BasePostParams postParams)
         {
-            return new JsonResult(await _GoodTypesService.Delete(postParams));
+            return new JsonResult(await _goodTypesService.Delete(postParams));
         }
 
     }

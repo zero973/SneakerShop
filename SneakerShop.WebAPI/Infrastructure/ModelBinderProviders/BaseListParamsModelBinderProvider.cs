@@ -7,11 +7,11 @@ namespace SneakerShop.WebAPI.Infrastructure.ModelBinderProviders
     public class BaseListParamsModelBinderProvider : IModelBinderProvider
     {
 
-        private readonly IModelBinder binder = new BaseListParamsModelBinder();
+        private readonly IModelBinder _binder = new BaseListParamsModelBinder();
 
         public IModelBinder? GetBinder(ModelBinderProviderContext context)
         {
-            return context.Metadata.ModelType == typeof(BaseListParams) ? binder : null;
+            return context.Metadata.ModelType == typeof(BaseListParams) ? _binder : null;
         }
     }
 }

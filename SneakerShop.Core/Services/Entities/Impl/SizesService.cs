@@ -7,8 +7,8 @@ namespace SneakerShop.Core.Services.Entities.Impl
 {
     public class SizesService : BaseEntityService<Size>, ISizesService
     {
-        public SizesService(IDbEntitiesRepository<Size> dbRepository, IAutificationService autificationService) 
-            : base(dbRepository, autificationService)
+        public SizesService(IDbEntitiesRepository<Size> dbRepository, IAuthenticationService authenticationService) 
+            : base(dbRepository, authenticationService)
         {
 
         }

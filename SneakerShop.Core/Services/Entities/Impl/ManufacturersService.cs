@@ -7,8 +7,8 @@ namespace SneakerShop.Core.Services.Entities.Impl
 {
     public class ManufacturersService : BaseEntityService<Manufacturer>, IManufacturersService
     {
-        public ManufacturersService(IDbEntitiesRepository<Manufacturer> dbRepository, IAutificationService autificationService) 
-            : base(dbRepository, autificationService)
+        public ManufacturersService(IDbEntitiesRepository<Manufacturer> dbRepository, IAuthenticationService authenticationService) 
+            : base(dbRepository, authenticationService)
         {
 
         }

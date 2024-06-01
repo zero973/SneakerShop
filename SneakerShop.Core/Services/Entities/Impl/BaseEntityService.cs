@@ -14,14 +14,14 @@ namespace SneakerShop.Core.Services.Impl
         where T : class, IEntity
     {
 
-        private readonly IDbEntitiesRepository<T> DbRepository;
+        protected readonly IDbEntitiesRepository<T> DbRepository;
 
-        private readonly IAutificationService _AutificationService;
+        protected readonly IAuthenticationService AuthenticationService;
 
-        public BaseEntityService(IDbEntitiesRepository<T> dbRepository, IAutificationService autificationService)
+        protected BaseEntityService(IDbEntitiesRepository<T> dbRepository, IAuthenticationService authenticationService)
         {
             DbRepository = dbRepository;
-            _AutificationService = autificationService;
+            AuthenticationService = authenticationService;
         }
 
         public virtual async Task<Result<T>> Get(BaseListParams baseParams)
@@ -41,7 +41,7 @@ namespace SneakerShop.Core.Services.Impl
 
         public virtual async Task<Result<T>> Add(BasePostParams postParams)
         {
-            var userResult = await _AutificationService.GetCurrentUser();
+            var userResult = await AuthenticationService.GetCurrentUser();
             var user = userResult.Data;
             var entity = postParams.ToEntity<T>();
 
@@ -57,7 +57,7 @@ namespace SneakerShop.Core.Services.Impl
 
         public virtual async Task<Result<T>> Update(BasePostParams postParams)
         {
-            var userResult = await _AutificationService.GetCurrentUser();
+            var userResult = await AuthenticationService.GetCurrentUser();
             var user = userResult.Data;
             var entity = postParams.ToEntity<T>();
 
@@ -74,7 +74,7 @@ namespace SneakerShop.Core.Services.Impl
 
         public virtual async Task<Result<T>> Delete(BasePostParams postParams)
         {
-            var userResult = await _AutificationService.GetCurrentUser();
+            var userResult = await AuthenticationService.GetCurrentUser();
             var user = userResult.Data;
             var entity = postParams.ToEntity<T>();
 

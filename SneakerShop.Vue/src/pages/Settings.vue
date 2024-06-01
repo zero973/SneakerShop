@@ -15,7 +15,7 @@
 	const currentUser = ref(new AppUser(undefined, undefined, undefined));
 
 	async function fetchUserData() {
-		await axios.get('/api/Autification/GetCurrentUser')
+		await axios.get('/api/Authentication/GetCurrentUser')
 			.then(x => {
 				if (x.data != null && x.data.data != null)
 					currentUser.value = new AppUser(x.data.data.id, x.data.data.userName, x.data.data.roles)

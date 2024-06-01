@@ -12,36 +12,36 @@ namespace SneakerShop.WebAPI.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Roles = Constants.CustomerUserRoleName)]
+    [Authorize]
     public class OrdersController : ControllerBase, IEntityController
     {
 
-        private readonly IOrdersService _OrdersService;
+        private readonly IOrdersService _ordersService;
 
         public OrdersController(IOrdersService ordersService)
         {
-            _OrdersService = ordersService;
+            _ordersService = ordersService;
         }
 
         [HttpPost]
         [Route("[action]")]
         public async Task<JsonResult> MakeOrderFromBasket()
         {
-            return new JsonResult(await _OrdersService.MakeOrderFromBasket());
+            return new JsonResult(await _ordersService.MakeOrderFromBasket());
         }
 
         [HttpGet]
         [Route("[action]")]
         public async Task<JsonResult> Get([FromQuery] BaseListParams baseParams)
         {
-            return new JsonResult(await _OrdersService.Get(baseParams));
+            return new JsonResult(await _ordersService.Get(baseParams));
         }
         
         [HttpGet]
         [Route("[action]")]
         public async Task<JsonResult> GetAll([FromQuery] BaseListParams baseParams)
         {
-            return new JsonResult(await _OrdersService.GetAll(baseParams));
+            return new JsonResult(await _ordersService.GetAll(baseParams));
         }
 
         [HttpPost]
@@ -49,7 +49,7 @@ namespace SneakerShop.WebAPI.Controllers
         [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Add([FromBody] BasePostParams postParams)
         {
-            return new JsonResult(await _OrdersService.Add(postParams));
+            return new JsonResult(await _ordersService.Add(postParams));
         }
 
         [HttpPost]
@@ -57,7 +57,7 @@ namespace SneakerShop.WebAPI.Controllers
         [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Update([FromBody] BasePostParams postParams)
         {
-            return new JsonResult(await _OrdersService.Update(postParams));
+            return new JsonResult(await _ordersService.Update(postParams));
         }
 
         [HttpPost]
@@ -65,7 +65,7 @@ namespace SneakerShop.WebAPI.Controllers
         [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Delete([FromBody] BasePostParams postParams)
         {
-            return new JsonResult(await _OrdersService.Delete(postParams));
+            return new JsonResult(await _ordersService.Delete(postParams));
         }
 
     }

@@ -15,25 +15,25 @@ namespace SneakerShop.WebAPI.Controllers
     public class SizesController : ControllerBase, IEntityController
     {
 
-        private readonly ISizesService _SizesService;
+        private readonly ISizesService _sizesService;
 
         public SizesController(ISizesService ordersService)
         {
-            _SizesService = ordersService;
+            _sizesService = ordersService;
         }
 
         [HttpGet]
         [Route("[action]")]
         public async Task<JsonResult> Get([FromQuery] BaseListParams baseParams)
         {
-            return new JsonResult(await _SizesService.Get(baseParams));
+            return new JsonResult(await _sizesService.Get(baseParams));
         }
 
         [HttpGet]
         [Route("[action]")]
         public async Task<JsonResult> GetAll([FromQuery] BaseListParams baseParams)
         {
-            return new JsonResult(await _SizesService.GetAll(baseParams));
+            return new JsonResult(await _sizesService.GetAll(baseParams));
         }
 
         [HttpPost]
@@ -41,7 +41,7 @@ namespace SneakerShop.WebAPI.Controllers
         [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Add([FromBody] BasePostParams postParams)
         {
-            return new JsonResult(await _SizesService.Add(postParams));
+            return new JsonResult(await _sizesService.Add(postParams));
         }
 
         [HttpPost]
@@ -49,7 +49,7 @@ namespace SneakerShop.WebAPI.Controllers
         [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Update([FromBody] BasePostParams postParams)
         {
-            return new JsonResult(await _SizesService.Update(postParams));
+            return new JsonResult(await _sizesService.Update(postParams));
         }
 
         [HttpPost]
@@ -57,7 +57,7 @@ namespace SneakerShop.WebAPI.Controllers
         [Authorize(Roles = Constants.AdminUserRoleName)]
         public async Task<JsonResult> Delete([FromBody] BasePostParams postParams)
         {
-            return new JsonResult(await _SizesService.Delete(postParams));
+            return new JsonResult(await _sizesService.Delete(postParams));
         }
     }
 }

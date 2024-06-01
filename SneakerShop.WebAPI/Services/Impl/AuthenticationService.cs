@@ -11,33 +11,33 @@ namespace SneakerShop.WebAPI.Services.Impl
     /// <summary>
     /// Сервис для работы с аутентификацией пользователей
     /// </summary>
-    public class AutificationService : IAutificationService
+    public class AuthenticationService : IAuthenticationService
     {
 
-        private readonly SignInManager<DAL.Models.Entities.AppUser> _SignInManager;
+        private readonly SignInManager<DAL.Models.Entities.AppUser> _signInManager;
 
-        private readonly UserManager<DAL.Models.Entities.AppUser> _UserManager;
+        private readonly UserManager<DAL.Models.Entities.AppUser> _userManager;
 
-        private readonly IMapper _Mapper;
+        private readonly IMapper _mapper;
 
-        public AutificationService(SignInManager<DAL.Models.Entities.AppUser> signInManager, 
+        public AuthenticationService(SignInManager<DAL.Models.Entities.AppUser> signInManager, 
             UserManager<DAL.Models.Entities.AppUser> userManager, IMapper mapper)
         {
-            _SignInManager = signInManager;
-            _UserManager = userManager;
-            _Mapper = mapper;
+            _signInManager = signInManager;
+            _userManager = userManager;
+            _mapper = mapper;
         }
 
         public async Task<Result<AppUser>> GetCurrentUser()
         {
-            if (_SignInManager.Context.User.Identity.IsAuthenticated)
+            if (_signInManager.Context.User.Identity.IsAuthenticated)
             {
-                var user = await _UserManager.FindByNameAsync(_SignInManager.Context.User.Identity.Name);
+                var user = await _userManager.FindByNameAsync(_signInManager.Context.User.Identity.Name);
                 if (user != null)
                 {
-                    var roles = await _UserManager.GetRolesAsync(user);
+                    var roles = await _userManager.GetRolesAsync(user);
                     user.Roles = roles;
-                    return new Result<AppUser>(true, _Mapper.Map<AppUser>(user));
+                    return new Result<AppUser>(true, _mapper.Map<AppUser>(user));
                 }
             }
             return new Result<AppUser>(false, null, "Пользователь не найден !");
@@ -45,18 +45,18 @@ namespace SneakerShop.WebAPI.Services.Impl
 
         public async Task<Result<AppUser>> LogIn(LoginModel loginData)
         {
-            var result = await _SignInManager.PasswordSignInAsync(loginData.Login, loginData.Password, true, false);
+            var result = await _signInManager.PasswordSignInAsync(loginData.Login, loginData.Password, true, false);
             if (result.Succeeded)
             {
-                var user = await _UserManager.FindByNameAsync(loginData.Login);
-                return new Result<AppUser>(true, _Mapper.Map<AppUser>(user));
+                var user = await _userManager.FindByNameAsync(loginData.Login);
+                return new Result<AppUser>(true, _mapper.Map<AppUser>(user));
             }
             return new Result<AppUser>(false, null, "Пользователь не найден !");
         }
 
         public async Task<Result<AppUser>> SignUp(RegistrationModel registrationData)
         {
-            var user = await _UserManager.FindByNameAsync(registrationData.Login);
+            var user = await _userManager.FindByNameAsync(registrationData.Login);
             if (user != null)
                 return new Result<AppUser>(false, null, "Пользователь с таким логином уже существует !");
 
@@ -68,18 +68,18 @@ namespace SneakerShop.WebAPI.Services.Impl
                 LastName = registrationData.LastName
             };
 
-            var createUserResult = await _UserManager.CreateAsync(user, registrationData.Password);
+            var createUserResult = await _userManager.CreateAsync(user, registrationData.Password);
 
             if (createUserResult.Succeeded)
             {
-                var addToRoleResult = await _UserManager.AddToRoleAsync(user, Constants.CustomerUserRoleName);
+                var addToRoleResult = await _userManager.AddToRoleAsync(user, Constants.CustomerUserRoleName);
 
                 if (!addToRoleResult.Succeeded)
                     return new Result<AppUser>(false, null, 
                         $"Не удалось добавить роль пользователю. {string.Join(Environment.NewLine, addToRoleResult.Errors)}");
 
-                await _SignInManager.SignInAsync(user, true);
-                return new Result<AppUser>(true, _Mapper.Map<AppUser>(user));
+                await _signInManager.SignInAsync(user, true);
+                return new Result<AppUser>(true, _mapper.Map<AppUser>(user));
             }
 
             return new Result<AppUser>(false, null, $"Регистрация не удалась. {string.Join(Environment.NewLine, createUserResult.Errors)}");
@@ -87,7 +87,7 @@ namespace SneakerShop.WebAPI.Services.Impl
 
         public async Task SignOut()
         {
-            await _SignInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
         }
 
     }

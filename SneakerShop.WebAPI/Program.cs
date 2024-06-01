@@ -106,7 +106,7 @@ void RegisterControllersWithServices(WebApplicationBuilder builder)
 
     #endregion
 
-    builder.Services.AddTransient<IAutificationService, AutificationService>();
+    builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
     builder.Services.AddTransient<IRolesService, RolesService>();
 
     #region Entity services

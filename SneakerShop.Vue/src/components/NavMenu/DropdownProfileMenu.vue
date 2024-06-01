@@ -19,7 +19,7 @@
 
 	async function signOut() {
 		try {
-			await axios.post('/api/Autification/SignOut');
+			await axios.post('/api/Authentication/SignOut');
 			window.location.href = "/";
 		}
 		catch (err) {

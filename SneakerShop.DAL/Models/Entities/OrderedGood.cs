@@ -8,19 +8,19 @@
 
         public Guid OrderId { get; set; }
 
-        public Order _Order { get; set; }
+        public Order Order { get; set; }
 
         public Guid GoodId { get; set; }
 
-        public Good _Good { get; set; }
+        public Good Good { get; set; }
 
         public Guid SizeId { get; set; }
 
-        public Size _Size { get; set; }
+        public Size Size { get; set; }
 
         public Guid? DiscountId { get; set; }
 
-        public Discount? _Discount { get; set; }
+        public Discount? Discount { get; set; }
 
         public int Count { get; set; }
 

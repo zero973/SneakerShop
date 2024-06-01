@@ -7,8 +7,8 @@ namespace SneakerShop.Core.Services.Entities.Impl
 {
     public class GoodSubtypesService : BaseEntityService<GoodSubtype>, IGoodSubtypesService
     {
-        public GoodSubtypesService(IDbEntitiesRepository<GoodSubtype> dbRepository, IAutificationService autificationService) 
-            : base(dbRepository, autificationService)
+        public GoodSubtypesService(IDbEntitiesRepository<GoodSubtype> dbRepository, IAuthenticationService authenticationService) 
+            : base(dbRepository, authenticationService)
         {
 
         }

@@ -61,7 +61,7 @@
 
 	const toggleDropdownMenu = () => {
 		isOpenDropdownMenu.value = !isOpenDropdownMenu.value;
-		axios.get('/api/Autification/GetCurrentUser')
+		axios.get('/api/Authentication/GetCurrentUser')
 			.then(x => {
 				if (x.data != null && x.data.data != null)
 					currentUser.value = new AppUser(x.data.data.id, x.data.data.userName, x.data.data.roles)

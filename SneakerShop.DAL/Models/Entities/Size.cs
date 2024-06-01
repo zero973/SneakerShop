@@ -1,4 +1,6 @@
-﻿namespace SneakerShop.DAL.Models.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SneakerShop.DAL.Models.Entities
 {
     /// <summary>
 	/// Размер товара
@@ -8,8 +10,9 @@
 
         public Guid GoodSubtypeId { get; set; }
 
-        public GoodSubtype _GoodSubtype { get; set; }
+        public GoodSubtype GoodSubtype { get; set; }
 
+        [MaxLength(200)]
         public string Name { get; set; }
 
         public ICollection<OrderedGood> OrderedGoods { get; set; }

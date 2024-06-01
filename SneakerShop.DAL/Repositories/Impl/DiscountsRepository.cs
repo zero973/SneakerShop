@@ -10,40 +10,35 @@ namespace SneakerShop.DAL.Repositories.Impl
     public class DiscountsRepository : BaseDbEntitiesRepository<Core.Models.Entities.Discount, Discount>
     {
 
-        private readonly ApplicationContext _Context;
-
-        private readonly IMapper _Mapper;
-
         public DiscountsRepository(ApplicationContext context, IMapper mapper) : base(context, mapper)
         {
-            _Context = context;
-            _Mapper = mapper;
+            
         }
 
         public override async Task<Core.Models.Entities.Discount> Get(Guid id)
         {
-            var entity = await _Context.Set<Discount>()
-                .Include(x => x._Good)
-                    .ThenInclude(x => x._GoodSubtype)
-                        .ThenInclude(x => x._GoodType)
-                .Include(x => x._DiscountType)
+            var entity = await Context.Set<Discount>()
+                .Include(x => x.Good)
+                    .ThenInclude(x => x.GoodSubtype)
+                        .ThenInclude(x => x.GoodType)
+                .Include(x => x.DiscountType)
                 .SingleOrDefaultAsync(x => x.Id == id);
-            return _Mapper.Map<Core.Models.Entities.Discount>(entity);
+            return Mapper.Map<Core.Models.Entities.Discount>(entity);
         }
 
         public override IQueryable<Core.Models.Entities.Discount> GetAll(IList<ComplexFilter> filters)
         {
-            var result = _Context.Set<Discount>()
-                .Include(x => x._Good)
-                    .ThenInclude(x => x._GoodSubtype)
-                        .ThenInclude(x => x._GoodType)
-                .Include(x => x._DiscountType)
+            var result = Context.Set<Discount>()
+                .Include(x => x.Good)
+                    .ThenInclude(x => x.GoodSubtype)
+                        .ThenInclude(x => x.GoodType)
+                .Include(x => x.DiscountType)
                 .AsQueryable();
 
             if (filters != null && filters.Any())
                 result = result.WithFilters(filters);
 
-            return _Mapper.ProjectTo<Core.Models.Entities.Discount>(result);
+            return Mapper.ProjectTo<Core.Models.Entities.Discount>(result);
         }
 
     }
