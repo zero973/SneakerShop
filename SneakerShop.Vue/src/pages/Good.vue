@@ -7,8 +7,8 @@
 			<div class="">
 				<p class="text-sm">{{good.GoodTypeName}} - {{good.GoodSubtypeName}}</p>
 				<p class="mt-5">{{good.Name}}</p>
-				<p class="mt-5">Цена: {{good.Price}} руб.</p>
-				<p class="mt-5">Размеры:</p>
+				<p class="mt-5">Р¦РµРЅР°: {{good.Price}} СЂСѓР±.</p>
+				<p class="mt-5">Р Р°Р·РјРµСЂС‹:</p>
 				<p v-if="errorMessage.length > 0" class="mt-5 text-md text-red-600">{{errorMessage}}</p>
 				<div class="grid grid-cols-4 gap-5 pt-5" v-auto-animate>
 					<div v-for="size in good.Sizes" class="rounded-md border border-slate-500">
@@ -60,16 +60,16 @@
 
 	const constAddToBasketButtonText = computed(() => {
 		if (!isAddedToCart.value)
-			return 'Добавить в корзину';
+			return 'Р”РѕР±Р°РІРёС‚СЊ РІ РєРѕСЂР·РёРЅСѓ';
 		else
-			return 'Удалить из корзины';
+			return 'РЈРґР°Р»РёС‚СЊ РёР· РєРѕСЂР·РёРЅС‹';
 	});
 
 	async function fetchGood() {
 		isLoading.value = true;
 
 		try {
-			// загружаем информацию о товаре
+			// Р·Р°РіСЂСѓР¶Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ С‚РѕРІР°СЂРµ
 			const params = new BaseListParams(-1, -1, {}, []);
 
 			params.Filters = [new ComplexFilter('Id', ComplexFilterOperators.Equals, route.params.id)];
@@ -77,9 +77,9 @@
 			params.Filters = JSON.stringify(params.Filters);
 			const { data } = await axios.get('/api/Goods/Get', { params });
 
-			// загружаем размеры товара
+			// Р·Р°РіСЂСѓР¶Р°РµРј СЂР°Р·РјРµСЂС‹ С‚РѕРІР°СЂР°
 			params.Filters = [
-				new ComplexFilter('GoodSubtypeId', ComplexFilterOperators.Equals, data.data._GoodSubtype.id),
+				new ComplexFilter('GoodSubtypeId', ComplexFilterOperators.Equals, data.data.goodSubtype.id),
 				new ComplexFilter('IsActual', ComplexFilterOperators.Equals, true)
 			];
 
@@ -87,22 +87,22 @@
 			let sizes = [];
 			await axios.get('/api/Sizes/GetAll', { params }).then(x => sizes = x.data.data);
 
-			const manufacturer = new Manufacturer(data.data._Manufacturer.id,
-				data.data._Manufacturer.name,
-				data.data._Manufacturer.description,
-				data.data._Manufacturer.imageURL);
+			const manufacturer = new Manufacturer(data.data.manufacturer.id,
+				data.data.manufacturer.name,
+				data.data.manufacturer.description,
+				data.data.manufacturer.imageUrl);
 
 			good.value = new Good(data.data.id,
-				data.data._GoodSubtype._GoodType.name,
-				data.data._GoodSubtype.name,
+				data.data.goodSubtype.goodType.name,
+				data.data.goodSubtype.name,
 				manufacturer,
 				data.data.name,
 				data.data.price,
 				data.data.description,
-				data.data.imageURL,
+				data.data.imageUrl,
 				sizes);
 
-			// проверяем, есть ли этот товар в корзине
+			// РїСЂРѕРІРµСЂСЏРµРј, РµСЃС‚СЊ Р»Рё СЌС‚РѕС‚ С‚РѕРІР°СЂ РІ РєРѕСЂР·РёРЅРµ
 			params.Filters = [
 				new ComplexFilter('GoodId', ComplexFilterOperators.Equals, route.params.id),
 				new ComplexFilter('IsActual', ComplexFilterOperators.Equals, true)
@@ -123,7 +123,7 @@
 	}
 
 	async function addOrRemoveFromBasket() {
-		// проверить, что пользователь авторизован
+		// РїСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р°РІС‚РѕСЂРёР·РѕРІР°РЅ
 		const params = new BaseListParams(-1, -1, {}, []);
 
 		const filter = new ComplexFilter('Id', ComplexFilterOperators.Equals, route.params.id);
@@ -147,13 +147,13 @@
 			}
 			else {
 				if (isEmpty(choosedSize.value)) {
-					errorMessage.value = 'Выберите размер !';
+					errorMessage.value = 'Р’С‹Р±РµСЂРёС‚Рµ СЂР°Р·РјРµСЂ !';
 					return;
 				}
 				const data = new BasketElement(Guid.EMPTY, route.params.id, choosedSize.value, currentUser.value.Id, null, 1);
 				await axios.post('/api/Basket/Add', { data })
 					.then(x => {
-						// todo можно так оставить или надо через конструктор делать "new BasketElement(...)" ?
+						// todo РјРѕР¶РЅРѕ С‚Р°Рє РѕСЃС‚Р°РІРёС‚СЊ РёР»Рё РЅР°РґРѕ С‡РµСЂРµР· РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґРµР»Р°С‚СЊ "new BasketElement(...)" ?
 						basketElement.value = x.data.data;
 					})
 					.catch(x => console.error(x));

@@ -28,8 +28,9 @@
 
 	async function deleteBasketElement() {
 		try {
-			const element = new BasketElement(props.id);
-			await axios.post('/api/Basket/Delete', { element });
+			const data = new BasketElement(props.id);
+			await axios.post('/api/Basket/Delete', { data });
+			fetchBasket();
 		}
 		catch (err) {
 			console.error(err);

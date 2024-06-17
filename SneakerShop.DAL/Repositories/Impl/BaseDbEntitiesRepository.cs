@@ -68,7 +68,7 @@ namespace SneakerShop.DAL.Repositories.Impl
             Context.Set<U>().Update(entityForSave);
 
             await SaveChanges();
-            return Mapper.Map<T>(entity);
+            return Mapper.Map<T>(entityForSave);
         }
 
         public virtual async Task UpdateRange(IEnumerable<T> entities) 
@@ -87,7 +87,7 @@ namespace SneakerShop.DAL.Repositories.Impl
             Context.Set<U>().Update(entityForSave);
 
             await SaveChanges();
-            return Mapper.Map<T>(entity);
+            return Mapper.Map<T>(entityForSave);
         }
 
         public virtual async Task<T> Remove(T entity) 
@@ -97,7 +97,7 @@ namespace SneakerShop.DAL.Repositories.Impl
             Context.Set<U>().Remove(entityToDelete);
 
             await SaveChanges();
-            return Mapper.Map<T>(entity);
+            return Mapper.Map<T>(entityToDelete);
         }
 
         public virtual async Task RemoveRange(IEnumerable<T> entities) 

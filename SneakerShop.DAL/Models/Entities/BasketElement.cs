@@ -11,15 +11,15 @@ namespace SneakerShop.DAL.Models.Entities
 
         public Guid GoodId { get; set; }
 
-        public Good Good { get; set; }
+        public Good? Good { get; set; }
 
         public Guid SizeId { get; set; }
 
-        public Size Size { get; set; }
+        public Size? Size { get; set; }
 
         public Guid UserId { get; set; }
 
-        public AppUser User { get; set; }
+        public AppUser? User { get; set; }
 
         public Guid? DiscountId { get; set; }
 

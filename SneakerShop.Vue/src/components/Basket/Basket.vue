@@ -12,7 +12,7 @@
 
 		<div v-else class="flex flex-col gap-4" v-auto-animate>
 			<BasketItem v-for="element in basket" :key="element.id" :id="element.id"
-				:name="element._Good.name" :imageURL="element._Good.imageURL" :price="element._Good.price" :size="element._Size.name" />
+				:name="element.good.name" :imageURL="element.good.imageUrl" :price="element.good.price" :size="element.size.name" />
 
 			<div class="flex flex-col gap-4 my-7">
 				<div class="flex gap-2">
